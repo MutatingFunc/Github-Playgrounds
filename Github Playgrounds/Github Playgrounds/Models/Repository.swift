@@ -2,12 +2,13 @@ import SwiftUI
 
 extension User {
     /// The further details of a Github user which may be fetched at a later time.
-    struct Repository {
+    struct Repository: Identifiable {
         var id: Int
         var name: String
         var path: String
         var url: URL?
         var description: String
+        var language: String?
         var isFork: Bool
         var forkCount: Int
         var starCount: Int
@@ -31,6 +32,7 @@ extension User {
                 path: "octocat/Hello-World",
                 url: URL(string: "https://github.com/octocat/Hello-World")!,
                 description: "This your first repo!",
+                language: "swift",
                 isFork: false,
                 forkCount: 9,
                 starCount: 80,

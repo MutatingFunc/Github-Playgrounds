@@ -15,7 +15,7 @@ struct UserReposAPI: GithubAPI {
     var apiPath: String {
         // Avoid invalid characters in username breaking the URL
         let username = username.addingPercentEncoding(withAllowedCharacters: .alphanumerics) ?? username
-        return "/users/\(username)/repos?kind=\(kind.rawValue)&sort=\(sort.rawValue)&page=\(page)"
+        return "users/\(username)/repos?kind=\(kind.rawValue)&sort=\(sort.rawValue)&page=\(page)"
     }
     
     func previewData() -> [Repository] {
@@ -27,6 +27,7 @@ struct UserReposAPI: GithubAPI {
                 html_url: "https://github.com/octocat/Hello-World",
                 description: "This your first repo!",
                 fork: false,
+                language: "swift",
                 forks_count: 9,
                 stargazers_count: 80,
                 watchers_count: 80,
@@ -72,7 +73,7 @@ struct UserReposAPI: GithubAPI {
         // },
         // "private": false,
         var html_url: String // "https://github.com/octocat/Hello-World",
-        var description: String // "This your first repo!",
+        var description: String? // "This your first repo!",
         var fork: Bool // false,
         // "url": "https://api.github.com/repos/octocat/Hello-World",
         // "archive_url": "https://api.github.com/repos/octocat/Hello-World/{archive_format}{/ref}",
@@ -117,7 +118,7 @@ struct UserReposAPI: GithubAPI {
         // "hooks_url": "https://api.github.com/repos/octocat/Hello-World/hooks",
         // "svn_url": "https://svn.github.com/octocat/Hello-World",
         // "homepage": "https://github.com",
-        // "language": null,
+        var language: String? // null,
         var forks_count: Int // 9,
         var stargazers_count: Int // 80,
         var watchers_count: Int // 80,

@@ -41,7 +41,6 @@ extension GithubAPI {
     
     /// The fully-formed API Request.
     func urlRequest() throws -> URLRequest {
-        let accessToken = try projectAccessToken()
         var urlRequest = URLRequest(url: url!)
         urlRequest.allHTTPHeaderFields = try [
             "Accept": "application/vnd.github+json",

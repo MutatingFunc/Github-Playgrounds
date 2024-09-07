@@ -6,7 +6,7 @@ struct UserList {
     @ObservableState
     struct State {
         var rows: IdentifiedArrayOf<UserListRow.State>
-        init(users: [User] = [.preview()]) {
+        init(users: [User]) {
             self.rows = IdentifiedArray(
                 uniqueElements: users.map { user in UserListRow.State(user: user) }
             )

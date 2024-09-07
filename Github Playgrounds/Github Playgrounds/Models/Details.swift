@@ -9,8 +9,8 @@ extension User {
         var email: String
         var bio: String
         var repoCount: Int
-        var followCount: Int
-        var followerCount: Int
+        var followingCount: Int
+        var followersCount: Int
         
         static func preview() -> Self {
             Self(
@@ -20,8 +20,8 @@ extension User {
                 email: "octocat@github.com",
                 bio: "There once was...",
                 repoCount: 2,
-                followCount: 20,
-                followerCount: 0
+                followingCount: 20,
+                followersCount: 0
             )
         }
     }

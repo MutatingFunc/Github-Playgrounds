@@ -5,10 +5,12 @@ import ComposableArchitecture
 struct UserDetails {
     @ObservableState
     struct State {
-        var user: User = .preview()
-        var detailsLoadError: Error? = nil
+        var user: User
+        var isLoadingRepos = false
+        var rows: IdentifiedArrayOf<RepoRow.State> = []
         var reposLoadError: Error? = nil
-        @Shared var loadedAvatar: Result<Image, Error>?
+        var detailsLoadError: Error? = nil
+        var loadedAvatar: Result<Image, Error>?
     }
     
     enum Action {
@@ -16,6 +18,7 @@ struct UserDetails {
         case loadedDetails(Result<User.Details, Error>)
         case loadRepos
         case loadedRepos(Result<[User.Repository], Error>)
+        case repoRow(IdentifiedActionOf<RepoRow>)
     }
     
     @Dependency(\.github) private var github
@@ -25,6 +28,7 @@ struct UserDetails {
             switch action {
                 
             case .loadDetails:
+                state.isLoadingRepos = true
                 return .run { [user = state.user] send in
                     let details = await Task {
                         try await github.details(for: user)
@@ -33,8 +37,10 @@ struct UserDetails {
                 }
             case .loadedDetails(.success(let details)):
                 state.user.details = details
+                state.isLoadingRepos = false
             case .loadedDetails(.failure(let error)):
                 state.detailsLoadError = error
+                state.isLoadingRepos = false
                 
             case .loadRepos:
                 return .run { [user = state.user] send in
@@ -44,12 +50,21 @@ struct UserDetails {
                     await send(.loadedRepos(repos))
                 }
             case .loadedRepos(.success(let repos)):
-                state.user.repos = repos
+                state.rows = IdentifiedArray(
+                    uniqueElements: repos.map { repo in
+                        RepoRow.State(repo: repo)
+                    }
+                )
             case .loadedRepos(.failure(let error)):
                 state.reposLoadError = error
                 
+            case .repoRow:
+                break
+                
             }
             return .none
+        }.forEach(\.rows, action: \.repoRow) {
+            RepoRow()
         }
     }
 }

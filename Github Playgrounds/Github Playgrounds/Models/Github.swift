@@ -45,14 +45,14 @@ struct GithubLive: Github {
         let details = try await githubFetcher
             .fetch(from: UserDetailsAPI(username: user.username))
         return User.Details(
-            fullName: details.name,
-            company: details.company,
-            location: details.location,
-            email: details.email,
-            bio: details.bio,
+            fullName: details.name ?? "Anonymous",
+            company: details.company ?? "",
+            location: details.location ?? "",
+            email: details.email ?? "",
+            bio: details.bio ?? "",
             repoCount: details.public_repos,
-            followCount: details.following,
-            followerCount: details.followers
+            followingCount: details.following,
+            followersCount: details.followers
         )
     }
     
@@ -64,7 +64,8 @@ struct GithubLive: Github {
                     id: repo.id,
                     name: repo.name,
                     path: repo.full_name,
-                    description: repo.description,
+                    description: repo.description ?? "",
+                    language: repo.language,
                     isFork: repo.fork,
                     forkCount: repo.forks_count,
                     starCount: repo.stargazers_count,

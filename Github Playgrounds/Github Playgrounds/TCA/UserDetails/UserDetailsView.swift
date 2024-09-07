@@ -7,51 +7,81 @@ struct UserDetailsView: View {
     var body: some View {
         let details = store.user.details
         List {
-            ForEach(store.repos) { store in
-                RepoRow(store)
+            Section {
+                ForEach(store.scope(state: \.rows, action: \.repoRow)) { store in
+                    RepoRowView(store: store)
+                }
+            } header: {
+                if let error = store.reposLoadError {
+                    ErrorView(description: "Error loading repositories", error: error)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color(uiColor: .systemGroupedBackground))
+                }
+            }.headerProminence(.standard)
+            if store.isLoadingRepos {
+                ProgressView("Loading…")
             }
-        }.safeAreaInset(edge: .top) {
+        }
+        .safeAreaInset(edge: .top) {
             VStack(spacing: 0) {
                 HStack {
                     AvatarView(avatar: store.loadedAvatar, imageSize: 64)
-                    VStack(alignment: .leading) {
-                        Group {
-                            if let fullName = details?.fullName {
-                                Text(fullName)
-                            } else {
-                                Text("Anonymous")
-                                    .redacted(reason: .placeholder)
+                        .accessibilityHidden(true)
+                    Group {
+                        if let error = store.detailsLoadError {
+                            ErrorView(description: "Error loading user details", error: error)
+                        } else {
+                            Group {
+                                if let fullName = details?.fullName {
+                                    Text(fullName)
+                                } else {
+                                    Text("Anonymous")
+                                        .redacted(reason: .placeholder)
+                                }
                             }
+                            .font(.title)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .userStats(
+                                following: store.user.details?.followingCount,
+                                followers: store.user.details?.followersCount
+                            )
                         }
-                        .font(.title)
-                        HStack {
-                            if let followCount = details?.followCount {
-                                Text("\(followCount) following")
-                            } else {
-                                Text("000 following")
-                                    .redacted(reason: .placeholder)
-                            }
-                            if let followerCount = details?.followerCount {
-                                Text("\(followerCount) followers")
-                            } else {
-                                Text("000 followers")
-                                    .redacted(reason: .placeholder)
-                            }
-                        }.font(.callout)
                     }
-                    .multilineTextAlignment(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 .padding()
-                .background(.regularMaterial, ignoresSafeAreaEdges: .all)
+                .background(.bar, ignoresSafeAreaEdges: .all)
                 Divider().edgesIgnoringSafeArea(.all)
             }
-        }.navigationTitle(store.user.username)
+        }
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle(store.user.username)
+        .task {
+            store.send(.loadDetails)
+            store.send(.loadRepos)
+        }
     }
 }
 
 #Preview {
-    let store = Store(initialState: .init(loadedAvatar: .init(nil))) {
+    let store = Store(initialState: .init(user: .preview(), loadedAvatar: nil)) {
+        UserDetails()
+    }
+    return NavigationStack {
+        UserDetailsView(store: store)
+    }
+}
+
+#Preview("With Error") {
+    let store = Store(
+        initialState: .init(
+            user: .preview(),
+            reposLoadError: CocoaError(.fileNoSuchFile),
+            detailsLoadError: CocoaError(.fileNoSuchFile),
+            loadedAvatar: nil
+        )
+    ) {
         UserDetails()
     }
     return NavigationStack {

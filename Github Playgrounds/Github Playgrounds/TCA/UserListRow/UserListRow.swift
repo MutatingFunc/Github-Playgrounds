@@ -5,14 +5,20 @@ import ComposableArchitecture
 struct UserListRow {
     @ObservableState
     struct State: Identifiable {
-        var id: Int { user.id }
-        var user: User = .preview()
-        var loadedAvatar: Result<Image, Error>? = nil
+        var id: User.ID { user.id }
+        var user: User
+        var loadedAvatar: Result<Image, Error>?
+        var userDetails: UserDetails.State {
+            .init(user: user, loadedAvatar: loadedAvatar)
+        }
     }
     
     enum Action {
         case loadAvatar
         case loadedAvatar(Result<Image, Error>)
+        
+        // Nav
+        case select
     }
     
     var body: some ReducerOf<Self> {
@@ -25,6 +31,8 @@ struct UserListRow {
                 }
             case .loadedAvatar(let result):
                 state.loadedAvatar = result
+            case .select:
+                break
             }
             return .none
         }

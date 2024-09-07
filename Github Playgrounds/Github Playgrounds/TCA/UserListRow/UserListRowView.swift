@@ -5,7 +5,9 @@ struct UserListRowView: View {
     var store: StoreOf<UserListRow>
     
     var body: some View {
-        HStack {
+        NavigationLink(
+            state: Window.Path.State.showUser(store.userDetails)
+        ) {
             AvatarView(avatar: store.loadedAvatar, imageSize: 48)
             Text(store.user.username)
                 .font(.title)
@@ -16,7 +18,7 @@ struct UserListRowView: View {
 }
 
 #Preview {
-    let store = StoreOf<UserListRow>(initialState: .init()) {
+    let store = StoreOf<UserListRow>(initialState: .init(user: .preview())) {
         UserListRow()
     }
     return List {
