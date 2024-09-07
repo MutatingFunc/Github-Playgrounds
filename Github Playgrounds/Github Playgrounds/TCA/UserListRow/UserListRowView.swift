@@ -5,20 +5,22 @@ struct UserListRowView: View {
     var store: StoreOf<UserListRow>
     
     var body: some View {
-        NavigationLink(
-            state: Window.Path.State.showUser(store.userDetails)
-        ) {
-            AvatarView(avatar: store.loadedAvatar, imageSize: 48)
-            Text(store.user.username)
-                .font(.title)
-        }.task {
+        Button {
+            store.send(.select)
+        } label: {
+            HStack {
+                AvatarView(avatar: store.loadedAvatar, imageSize: 48)
+                Text(store.user.username)
+                    .font(.title)
+            }
+        }.task(id: store.user.id) {
             store.send(.loadAvatar)
         }
     }
 }
 
 #Preview {
-    let store = StoreOf<UserListRow>(initialState: .init(user: .preview())) {
+    let store = StoreOf<UserListRow>(initialState: .init(user: .init(.preview()))) {
         UserListRow()
     }
     return List {

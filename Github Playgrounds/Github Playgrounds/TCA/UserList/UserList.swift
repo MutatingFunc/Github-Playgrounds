@@ -8,7 +8,7 @@ struct UserList {
         var rows: IdentifiedArrayOf<UserListRow.State>
         init(users: [User]) {
             self.rows = IdentifiedArray(
-                uniqueElements: users.map { user in UserListRow.State(user: user) }
+                uniqueElements: users.map { user in UserListRow.State(user: .init(user)) }
             )
         }
     }

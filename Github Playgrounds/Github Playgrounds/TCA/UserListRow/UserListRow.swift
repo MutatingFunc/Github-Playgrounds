@@ -6,10 +6,11 @@ struct UserListRow {
     @ObservableState
     struct State: Identifiable {
         var id: User.ID { user.id }
-        var user: User
-        var loadedAvatar: Result<Image, Error>?
-        var userDetails: UserDetails.State {
-            .init(user: user, loadedAvatar: loadedAvatar)
+        var user: User { userDetails.user }
+        var loadedAvatar: Result<Image, Error>? { userDetails.loadedAvatar }
+        var userDetails: UserDetails.State
+        init(user: Shared<User>, loadedAvatar: Result<Image, Error>? = nil) {
+            self.userDetails = .init(user: user, loadedAvatar: loadedAvatar)
         }
     }
     
@@ -30,7 +31,7 @@ struct UserListRow {
                     await send(.loadedAvatar(loadedAvatar))
                 }
             case .loadedAvatar(let result):
-                state.loadedAvatar = result
+                state.userDetails.loadedAvatar = result
             case .select:
                 break
             }

@@ -5,7 +5,7 @@ import ComposableArchitecture
 struct UserDetails {
     @ObservableState
     struct State {
-        var user: User
+        @Shared var user: User
         var isLoadingRepos = false
         var rows: IdentifiedArrayOf<RepoRow.State> = []
         var reposLoadError: Error? = nil
@@ -28,6 +28,7 @@ struct UserDetails {
             switch action {
                 
             case .loadDetails:
+                guard state.user.details == nil else { return .none }
                 state.isLoadingRepos = true
                 return .run { [user = state.user] send in
                     let details = await Task {
@@ -43,6 +44,11 @@ struct UserDetails {
                 state.isLoadingRepos = false
                 
             case .loadRepos:
+                guard state.user.repos.isEmpty else {
+                    return .run { [repos = state.user.repos] send in
+                        await send(.loadedRepos(.success(repos)))
+                    }
+                }
                 return .run { [user = state.user] send in
                     let repos = await Task {
                         try await github.repos(for: user)
@@ -50,6 +56,7 @@ struct UserDetails {
                     await send(.loadedRepos(repos))
                 }
             case .loadedRepos(.success(let repos)):
+                state.user.repos = repos
                 state.rows = IdentifiedArray(
                     uniqueElements: repos.map { repo in
                         RepoRow.State(repo: repo)

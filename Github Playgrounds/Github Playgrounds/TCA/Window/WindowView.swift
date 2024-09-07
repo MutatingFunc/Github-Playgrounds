@@ -5,17 +5,15 @@ struct WindowView: View {
     @Bindable var store: StoreOf<Window>
     
     var body: some View {
-        NavigationStack(
-            path: $store.scope(state: \.path, action: \.path)
-        ) {
+        NavigationSplitView {
             PageLoaderView(store: store.scope(state: \.userList, action: \.userList)) { store in
                 UserListView(store: store)
-            }
-        } destination: { store in
-            switch store.case {
-            case .showUser(let store):
+            }.navigationDestination(item: $store.scope(state: \.selectedUser, action: \.selectedUser)) { store in
                 UserDetailsView(store: store)
+                    .id(store.user.id)
             }
+        } detail: {
+            Text("No selection")
         }
     }
 }

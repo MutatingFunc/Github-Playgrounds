@@ -5,7 +5,8 @@ struct User: Identifiable {
     var username: String
     var id: Int
     var avatar: () async throws -> Image
-    var details: Details?
+    var details: Details? = nil
+    var repos: [Repository] = []
     
     static func preview() -> Self {
         Self(
