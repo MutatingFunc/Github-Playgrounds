@@ -14,13 +14,14 @@ extension DependencyValues {
     }
 }
 
-/// Represents a paginated API page's link header
+/// Represents a paginated API page.
 struct Page {
     fileprivate var url: URL
     init(url: URL) {
         self.url = url
     }
     
+    /// Create from a link header received via API.
     init?(nextInLinkHeader linkHeader: String) {
         let regex = /<([^>]*)>; rel="next"/
         do {

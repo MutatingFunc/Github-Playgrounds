@@ -7,9 +7,10 @@ struct AppRobot: Robot {
     }
     
     func launch() -> UserListRobot {
-        // Provide any launch arguments here
+        // Sets TCA's environment to a testing context.
         app.launchEnvironment["SWIFT_DEPENDENCIES_CONTEXT"] = "test"
         app.launch()
+        // Open the sidebar if on iPad.
         if sidebarButton.exists {
             sidebarButton.tap()
         }
