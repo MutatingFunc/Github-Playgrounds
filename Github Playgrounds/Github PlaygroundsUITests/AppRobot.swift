@@ -8,6 +8,7 @@ struct AppRobot: Robot {
     
     func launch() -> UserListRobot {
         // Provide any launch arguments here
+        app.launchEnvironment["SWIFT_DEPENDENCIES_CONTEXT"] = "test"
         app.launch()
         if sidebarButton.exists {
             sidebarButton.tap()

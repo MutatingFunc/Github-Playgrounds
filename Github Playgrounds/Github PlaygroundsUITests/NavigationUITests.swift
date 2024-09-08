@@ -4,8 +4,8 @@ final class NavigationUITests: XCTestCase {
     func testBasicNavigation() {
         _ = AppRobot()
             .launch()
-            .tapUser("mojombo")
-            .tapGithubRepo("30daysoflaptops.github.io")
+            .tapUser("octocat")
+            .tapGithubRepo("Hello-World")
             .goBack()
             .goBack()
     }
