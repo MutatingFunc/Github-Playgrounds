@@ -5,7 +5,7 @@ struct WindowView: View {
     @Bindable var store: StoreOf<Window>
     
     var body: some View {
-        NavigationSplitView {
+        NavigationSplitView(columnVisibility: $store.columnVisibility.sending(\.columnVisibilityChanged)) {
             PageLoaderView(store: store.scope(state: \.userList, action: \.userList)) { store in
                 UserListView(store: store)
                     .navigationDestination(item: $store.scope(state: \.selectedUser, action: \.selectedUser)) { store in

@@ -45,12 +45,16 @@ struct RepoRowView: View {
                     store.send(.open)
                 } label: {
                     visual
+                        .background(.background.opacity(1/255))
+                    // Needs a non-clear background to ensure empty space is also hittable
                 }
                 .buttonStyle(.plain)
             } else {
                 visual
             }
         }
+        .accessibilityInputLabels([Text(store.repo.name)])
+        .accessibilityIdentifier(store.repo.name)
     }
 }
 

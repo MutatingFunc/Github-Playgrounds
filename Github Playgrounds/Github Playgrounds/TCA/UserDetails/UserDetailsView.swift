@@ -23,6 +23,7 @@ struct UserDetailsView: View {
                             }
                             .font(.title)
                             .frame(maxWidth: .infinity, alignment: .leading)
+                            .accessibilityIdentifier("Full Name")
                             .userStats(
                                 following: store.user.details?.followingCount,
                                 followers: store.user.details?.followersCount
