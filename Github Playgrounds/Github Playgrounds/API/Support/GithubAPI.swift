@@ -23,8 +23,8 @@ extension GithubAPI {
     var url: URL? { URL(string: baseURL + apiPath) }
     
     /// The fully-formed API Request.
-    func urlRequest() throws -> URLRequest {
-        var urlRequest = URLRequest(url: url!)
+    func urlRequest(for url: URL) throws -> URLRequest {
+        var urlRequest = URLRequest(url: url)
         urlRequest.allHTTPHeaderFields = try Support.projectDefaultRequest()
             .merging(self.headers(), uniquingKeysWith: { $1 })
         return urlRequest

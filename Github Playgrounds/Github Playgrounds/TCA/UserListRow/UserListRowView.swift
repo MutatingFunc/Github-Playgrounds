@@ -20,7 +20,7 @@ struct UserListRowView: View {
 }
 
 #Preview {
-    let store = StoreOf<UserListRow>(initialState: .init(user: .init(.preview()))) {
+    let store = StoreOf<UserListRow>(initialState: .init(user: .preview())) {
         UserListRow()
     }
     return List {

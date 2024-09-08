@@ -7,19 +7,26 @@ import SwiftUI
 final class UserDetailsSnapshotTests: XCTestCase {
     
     func testUserDetailsView() {
-        let user: User = .preview()
-        let store = Store(initialState: .init(user: .init(user), loadedAvatar: nil)) {
+        let store = Store(
+            initialState: .init(
+                user: .init(.preview()),
+                repos: (0...100).map { _ in .preview() }
+            )
+        ) {
             UserDetails()
         }
         let view = NavigationStack {
             UserDetailsView(store: store)
         }
-        store.send(.loadedRepos(.success(user.repos)))
         assertSnapshotOnDefaultDevices(view)
     }
     
     func testUserDetailsView_Loading() {
-        let store = Store(initialState: .init(user: .init(.preview()), loadedAvatar: nil)) {
+        let store = Store(
+            initialState: .init(
+                user: .init(.preview())
+            )
+        ) {
             UserDetails()
         }
         let view = NavigationStack {
@@ -31,10 +38,9 @@ final class UserDetailsSnapshotTests: XCTestCase {
     func testUserDetailsView_Errors() {
         let store = Store(
             initialState: .init(
-                user: .init(.preview()),
-                reposLoadError: CocoaError(.fileNoSuchFile),
+                user: .init(.preview(details: nil)),
                 detailsLoadError: CocoaError(.fileNoSuchFile),
-                loadedAvatar: nil
+                reposLoadError: CocoaError(.fileNoSuchFile)
             )
         ) {
             UserDetails()

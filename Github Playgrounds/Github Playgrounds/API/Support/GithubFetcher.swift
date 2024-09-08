@@ -14,18 +14,55 @@ extension DependencyValues {
     }
 }
 
+/// Represents a paginated API page's link header
+struct Page {
+    fileprivate var url: URL
+    init(url: URL) {
+        self.url = url
+    }
+    
+    init?(nextInLinkHeader linkHeader: String) {
+        let regex = /<([^>]*)>; rel="next"/
+        do {
+            let urlString = try regex.firstMatch(in: linkHeader)?.output.1
+            if let urlString, let url = URL(string: String(urlString)) {
+                self.url = url
+            } else {
+                return nil
+            }
+        } catch {
+            print(error)
+            return nil
+        }
+    }
+}
+
 /// The protocol for the networking layer. This may be mocked out.
 protocol GithubFetcher {
-    func fetch<API: GithubAPI>(from api: API) async throws -> API.Response
+    /// Fetches content from an API, optionally fetching content following a given page.
+    /// - Parameters:
+    ///   - api: The API to fetch from.
+    ///   - page: If specified, fetches content on the given page.
+    /// - Returns: The response from the API, and the next page of content if it exists
+    func fetch<API: GithubAPI>(from api: API, page: Page?) async throws -> (response: API.Response, nextPage: Page?)
 }
 
 /// A type to make real calls to the network.
 struct GithubFetcherLive: GithubFetcher {
     @Dependency(\.urlSession) private var urlSession
     
-    func fetch<API: GithubAPI>(from api: API) async throws -> API.Response {
-        let (data, _) = try await urlSession.data(for: api.urlRequest())
-        return try JSONDecoder().decode(API.Response.self, from: data)
+    func fetch<API: GithubAPI>(from api: API, page: Page?) async throws -> (response: API.Response, nextPage: Page?) {
+        let url = page?.url ?? api.url
+        guard let url else { throw GithubAPIError.invalidAPIURL }
+        
+        let (data, urlResponse) = try await urlSession.data(for: api.urlRequest(for: url))
+        var page: Page? = nil
+        if let urlResponse = urlResponse as? HTTPURLResponse, let link = urlResponse.value(forHTTPHeaderField: "Link") {
+            page = Page(nextInLinkHeader: link)
+        }
+        
+        let apiResponse = try JSONDecoder().decode(API.Response.self, from: data)
+        return (apiResponse, page)
     }
 }
 
@@ -34,12 +71,16 @@ struct GithubFetcherPreview: GithubFetcher {
     var delay: Int = 1
     var error: Error?
     
-    func fetch<API: GithubAPI>(from api: API) async throws -> API.Response {
+    func fetch<API: GithubAPI>(from api: API, page: Page?) async throws -> (response: API.Response, nextPage: Page?) {
         try await Task.sleep(for: .seconds(delay))
         if let error {
             throw error
+        } else if page != nil {
+            return (api.previewData(), nil)
+        } else if let apiURL = api.url {
+            return (api.previewData(), Page(url: apiURL))
         } else {
-            return api.previewData()
+            throw GithubAPIError.invalidAPIURL
         }
     }
 }

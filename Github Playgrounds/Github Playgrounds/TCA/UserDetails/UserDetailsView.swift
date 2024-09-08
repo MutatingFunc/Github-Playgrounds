@@ -11,7 +11,9 @@ struct UserDetailsView: View {
                         .accessibilityHidden(true)
                     Group {
                         if let error = store.detailsLoadError {
-                            ErrorView(description: "Error loading user details", error: error)
+                            ErrorView(description: "Error loading user details", error: error) {
+                                store.send(.loadDetails)
+                            }
                         } else {
                             Group {
                                 if let fullName = store.user.details?.fullName {
@@ -35,43 +37,43 @@ struct UserDetailsView: View {
                 .padding()
                 .background(.bar, ignoresSafeAreaEdges: .all)
                 Divider().edgesIgnoringSafeArea(.all)
-                if store.rows.isEmpty && store.reposLoadError == nil {
-                    ProgressView("Loading…")
-                        .padding()
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-                        .background(Color(uiColor: .systemGroupedBackground))
-                } else {
-                    List {
-                        Section {
-                            ForEach(store.scope(state: \.rows, action: \.repoRow)) { store in
-                                RepoRowView(store: store)
+                List {
+                    Section {
+                        ForEach(store.scope(state: \.rows, action: \.repoRow)) { store in
+                            RepoRowView(store: store)
+                        }
+                        if !store.reachedReposEnd && store.detailsLoadError == nil {
+                            ProgressView("Loading…")
+                                .frame(maxWidth: .infinity)
+                                .task {
+                                    store.send(.loadReposPage)
+                                }
+                        }
+                    } footer: {
+                        if let error = store.reposLoadError {
+                            ErrorView(description: "Error loading repositories", error: error) {
+                                store.send(.loadReposPage)
                             }
-                            if store.isLoadingRepos {
-                                ProgressView("Loading…")
-                                    .frame(maxWidth: .infinity)
-                            }
-                        } footer: {
-                            if let error = store.reposLoadError {
-                                ErrorView(description: "Error loading repositories", error: error)
-                                    .padding()
-                                    .frame(maxWidth: .infinity)
-                                    .background(Color(uiColor: .systemGroupedBackground))
-                            }
-                        }.headerProminence(.standard)
-                    }
+                            .padding(.horizontal)
+                        }
+                    }.headerProminence(.standard)
                 }
             }
             .navigationTitle(store.user.username)
             .navigationBarTitleDisplayMode(.inline)
             .task(id: store.user.id) {
                 store.send(.loadDetails)
-                store.send(.loadRepos)
             }
     }
 }
 
 #Preview {
-    let store = Store(initialState: .init(user: .init(.preview()), loadedAvatar: nil)) {
+    let store = Store(
+        initialState: .init(
+            user: .init(.preview()),
+            repos: (0...100).map { _ in .preview() }
+        )
+    ) {
         UserDetails()
     }
     return NavigationStack {
@@ -82,13 +84,12 @@ struct UserDetailsView: View {
 #Preview("With Error") {
     let store = Store(
         initialState: .init(
-            user: .init(.preview()),
-            reposLoadError: CocoaError(.fileNoSuchFile),
-            detailsLoadError: CocoaError(.fileNoSuchFile),
-            loadedAvatar: nil
+            user: .init(.preview(details: nil))
         )
     ) {
         UserDetails()
+    } withDependencies: { dependencies in
+        dependencies.github = GithubPreview(error: CocoaError(.fileNoSuchFile))
     }
     return NavigationStack {
         UserDetailsView(store: store)

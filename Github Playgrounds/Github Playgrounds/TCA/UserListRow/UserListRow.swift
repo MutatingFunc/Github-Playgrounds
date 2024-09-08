@@ -9,8 +9,8 @@ struct UserListRow {
         var user: User { userDetails.user }
         var loadedAvatar: Result<Image, Error>? { userDetails.loadedAvatar }
         var userDetails: UserDetails.State
-        init(user: Shared<User>, loadedAvatar: Result<Image, Error>? = nil) {
-            self.userDetails = .init(user: user, loadedAvatar: loadedAvatar)
+        init(user: User, loadedAvatar: Result<Image, Error>? = nil) {
+            self.userDetails = .init(user: Shared(user), loadedAvatar: loadedAvatar, repos: [])
         }
     }
     

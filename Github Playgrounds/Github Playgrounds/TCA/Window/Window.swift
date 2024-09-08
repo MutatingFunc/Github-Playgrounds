@@ -5,7 +5,7 @@ import ComposableArchitecture
 struct Window {
     @ObservableState
     struct State {
-        var userList: PageLoader<UserList>.State = .init()
+        var userList: UserList.State = .init(users: [])
         
         var columnVisibility: NavigationSplitViewVisibility = .automatic
         
@@ -14,7 +14,7 @@ struct Window {
     }
     
     enum Action {
-        case userList(PageLoader<UserList>.Action)
+        case userList(UserList.Action)
         case columnVisibilityChanged(NavigationSplitViewVisibility)
         case resetColumns
         
@@ -22,13 +22,11 @@ struct Window {
         case selectedRepo(PresentationAction<WebContent.Action>)
     }
     
-    @Dependency(\.github) private var github
-    
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
-            case .userList(.success(.rows(.element(id: let id, action: .select)))):
-                state.selectedUser = state.userList.success?.rows[id: id]?.userDetails
+            case .userList(.rows(.element(id: let id, action: .select))):
+                state.selectedUser = state.userList.rows[id: id]?.userDetails
                 state.selectedRepo = nil
                 
                 // Workaround for TCA not dismissing primary column on row selection.
@@ -56,9 +54,7 @@ struct Window {
             WebContent()
         }
         Scope(state: \.userList, action: \.userList) {
-            PageLoader(success: UserList()) {
-                .init(users: try await github.users())
-            }
+            UserList()
         }
     }
     

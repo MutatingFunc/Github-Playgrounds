@@ -17,33 +17,33 @@ extension DependencyValues {
 /// Represents the Github API surface
 protocol Github {
     /// Produces a list of users.
-    func users() async throws -> [User]
+    func users(page: Page?) async throws -> (users: [User], nextPage: Page?)
     /// Produces the details for a given user.
     func details(for user: User) async throws -> User.Details
     /// Produces a list of repositories for a given user.
-    func repos(for user: User) async throws -> [User.Repository]
+    func repos(for user: User, page: Page?) async throws -> (repos: [User.Repository], nextPage: Page?)
 }
 
 struct GithubLive: Github {
     @Dependency(\.githubFetcher) private var githubFetcher
     @Dependency(\.urlSession) private var urlSession
     
-    func users() async throws -> [User] {
-        try await githubFetcher
-            .fetch(from: UsersAPI())
-            .map { user in
-                User(
-                    username: user.login,
-                    id: user.id,
-                    avatar: { try await avatar(from: user.avatar_url) },
-                    details: nil
-                )
-            }
+    func users(page: Page?) async throws -> (users: [User], nextPage: Page?) {
+        let (response, page) = try await githubFetcher.fetch(from: UsersAPI(), page: page)
+        let model = response.map { user in
+            User(
+                username: user.login,
+                id: user.id,
+                avatar: { try await avatar(from: user.avatar_url) },
+                details: nil
+            )
+        }
+        return (model, page)
     }
     
     func details(for user: User) async throws -> User.Details {
-        let details = try await githubFetcher
-            .fetch(from: UserDetailsAPI(username: user.username))
+        let (details, _) = try await githubFetcher
+            .fetch(from: UserDetailsAPI(username: user.username), page: nil)
         return User.Details(
             fullName: details.name ?? "Anonymous",
             company: details.company ?? "",
@@ -56,10 +56,10 @@ struct GithubLive: Github {
         )
     }
     
-    func repos(for user: User) async throws -> [User.Repository] {
-        try await githubFetcher
-            .fetch(from: UserReposAPI(username: user.username))
-            .map { repo in
+    func repos(for user: User, page: Page?) async throws -> (repos: [User.Repository], nextPage: Page?) {
+        let (response, page) = try await githubFetcher
+            .fetch(from: UserReposAPI(username: user.username), page: page)
+        let model = response.map { repo in
                 User.Repository(
                     id: repo.id,
                     name: repo.name,
@@ -79,11 +79,12 @@ struct GithubLive: Github {
                     hasDiscussions: repo.has_discussions,
                     archived: repo.archived,
                     disabled: repo.disabled,
-                    pushed: Support.date(from: repo.pushed_at),
+                    pushed: repo.pushed_at.flatMap(Support.date),
                     created: Support.date(from: repo.created_at),
-                    updated: Support.date(from: repo.updated_at)
+                    updated: repo.updated_at.flatMap(Support.date)
                 )
             }
+        return (model, page)
     }
     
     func avatar(from avatarURLString: String) async throws -> Image {
@@ -99,19 +100,31 @@ struct GithubLive: Github {
 }
 
 struct GithubPreview: Github {
+    var error: Error?
     
-    func users() async throws -> [User] {
+    func users(page: Page?) async throws -> (users: [User], nextPage: Page?) {
+        if let error {
+            throw error
+        }
         try await Task.sleep(for: .seconds(0.5))
-        return [User.preview()]
+        let nextPage = page == nil ? Page(url: URL(string: "about:blank")!) : nil
+        return ([User.preview()], nextPage)
     }
     
     func details(for user: User) async throws -> User.Details {
+        if let error {
+            throw error
+        }
         try await Task.sleep(for: .seconds(0.5))
         return User.Details.preview()
     }
     
-    func repos(for user: User) async throws -> [User.Repository] {
+    func repos(for user: User, page: Page?) async throws -> (repos: [User.Repository], nextPage: Page?) {
+        if let error {
+            throw error
+        }
         try await Task.sleep(for: .seconds(0.5))
-        return [User.Repository.preview()]
+        let nextPage = page == nil ? Page(url: URL(string: "about:blank")!) : nil
+        return ([User.Repository.preview()], nextPage)
     }
 }

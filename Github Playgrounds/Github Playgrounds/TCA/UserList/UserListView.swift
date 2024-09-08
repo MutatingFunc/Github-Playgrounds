@@ -6,9 +6,24 @@ struct UserListView: View {
     
     var body: some View {
         List {
-            ForEach(store.scope(state: \.rows, action: \.rows)) { store in
-                UserListRowView(store: store)
-            }
+            Section {
+                ForEach(store.scope(state: \.rows, action: \.rows)) { store in
+                    UserListRowView(store: store)
+                }
+                if !store.reachedEnd && store.loadError == nil {
+                    ProgressView("Loading…")
+                        .frame(maxWidth: .infinity)
+                        .task {
+                            store.send(.loadPage)
+                        }
+                }
+            } footer: {
+                if let error = store.loadError {
+                    ErrorView(description: "Error loading users", error: error) {
+                        store.send(.loadPage)
+                    }.padding(.horizontal)
+                }
+            }.headerProminence(.standard)
         }.navigationTitle("Users")
     }
 }

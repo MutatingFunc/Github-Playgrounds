@@ -7,9 +7,8 @@ struct User: Identifiable {
     var id: Int
     var avatar: () async throws -> Image
     var details: Details? = nil
-    var repos: [Repository] = []
     
-    static func preview() -> Self {
+    static func preview(details: Details? = .preview()) -> Self {
         return Self(
             username: "octocat",
             id: UUID().hashValue,
@@ -17,8 +16,7 @@ struct User: Identifiable {
                 try await Task.sleep(for: .seconds(0.5))
                 return Image(systemName: "person.fill")
             },
-            details: .preview(),
-            repos: (0...100).map { _ in .preview() }
+            details: details
         )
     }
 }

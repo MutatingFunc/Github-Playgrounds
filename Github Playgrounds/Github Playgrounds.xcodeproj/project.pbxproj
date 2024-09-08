@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1A8AABA42C8DC08C00980938 /* XCUIElementExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8AABA32C8DC08C00980938 /* XCUIElementExtensions.swift */; };
-		1A8AABA72C8DC35500980938 /* PageLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8AABA52C8DC35100980938 /* PageLoaderTests.swift */; };
+		1A8AABA72C8DC35500980938 /* UserListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8AABA52C8DC35100980938 /* UserListTests.swift */; };
 		1ABDF6322C8DC6A40050434F /* UserListSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABDF6312C8DC6A40050434F /* UserListSnapshotTests.swift */; };
 		1ABDF6342C8DC7880050434F /* SnapshotHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABDF6332C8DC7880050434F /* SnapshotHelpers.swift */; };
 		1ABDF63A2C8DCA520050434F /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 1ABDF6392C8DCA520050434F /* ComposableArchitecture */; };
@@ -36,8 +36,6 @@
 		1ADB1C212C8C514A00DA3CE1 /* GithubFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB1C1C2C8C514A00DA3CE1 /* GithubFetcher.swift */; };
 		1ADB1C222C8C514A00DA3CE1 /* UsersAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB1C1D2C8C514A00DA3CE1 /* UsersAPI.swift */; };
 		1ADB1C272C8C547C00DA3CE1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB1C262C8C547C00DA3CE1 /* User.swift */; };
-		1ADB1C2E2C8C5B7500DA3CE1 /* PageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB1C2D2C8C5B7500DA3CE1 /* PageLoader.swift */; };
-		1ADB1C322C8C5E8C00DA3CE1 /* PageLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB1C312C8C5E8C00DA3CE1 /* PageLoaderView.swift */; };
 		1ADB1C352C8C608F00DA3CE1 /* UserList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB1C342C8C608F00DA3CE1 /* UserList.swift */; };
 		1ADB1C372C8C60A000DA3CE1 /* UserListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB1C362C8C60A000DA3CE1 /* UserListView.swift */; };
 		1ADB1C3C2C8C673000DA3CE1 /* Github.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB1C3B2C8C673000DA3CE1 /* Github.swift */; };
@@ -81,7 +79,7 @@
 
 /* Begin PBXFileReference section */
 		1A8AABA32C8DC08C00980938 /* XCUIElementExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCUIElementExtensions.swift; sourceTree = "<group>"; };
-		1A8AABA52C8DC35100980938 /* PageLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageLoaderTests.swift; sourceTree = "<group>"; };
+		1A8AABA52C8DC35100980938 /* UserListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListTests.swift; sourceTree = "<group>"; };
 		1ABDF6312C8DC6A40050434F /* UserListSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListSnapshotTests.swift; sourceTree = "<group>"; };
 		1ABDF6332C8DC7880050434F /* SnapshotHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelpers.swift; sourceTree = "<group>"; };
 		1ABDF6382C8DCA4E0050434F /* Github-Playgrounds-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Github-Playgrounds-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -112,8 +110,6 @@
 		1ADB1C1C2C8C514A00DA3CE1 /* GithubFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubFetcher.swift; sourceTree = "<group>"; };
 		1ADB1C1D2C8C514A00DA3CE1 /* UsersAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersAPI.swift; sourceTree = "<group>"; };
 		1ADB1C262C8C547C00DA3CE1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		1ADB1C2D2C8C5B7500DA3CE1 /* PageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageLoader.swift; sourceTree = "<group>"; };
-		1ADB1C312C8C5E8C00DA3CE1 /* PageLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageLoaderView.swift; sourceTree = "<group>"; };
 		1ADB1C342C8C608F00DA3CE1 /* UserList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserList.swift; sourceTree = "<group>"; };
 		1ADB1C362C8C60A000DA3CE1 /* UserListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListView.swift; sourceTree = "<group>"; };
 		1ADB1C3B2C8C673000DA3CE1 /* Github.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Github.swift; sourceTree = "<group>"; };
@@ -169,7 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				1ABDF63D2C8DD2590050434F /* UserDetailsSnapshotTests.swift */,
-				1A8AABA52C8DC35100980938 /* PageLoaderTests.swift */,
+				1A8AABA52C8DC35100980938 /* UserListTests.swift */,
 				1ABDF6312C8DC6A40050434F /* UserListSnapshotTests.swift */,
 			);
 			path = TCA;
@@ -324,7 +320,6 @@
 			isa = PBXGroup;
 			children = (
 				1ADB1C402C8C6F8F00DA3CE1 /* Window */,
-				1ADB1C302C8C5E7F00DA3CE1 /* Loader */,
 				1ADB1C332C8C608000DA3CE1 /* UserList */,
 				1ADB1C482C8C72DD00DA3CE1 /* UserListRow */,
 				1ADB1C4D2C8C7AA600DA3CE1 /* UserDetails */,
@@ -332,15 +327,6 @@
 				1ACB661A2C8D9DF400B9D982 /* WebContent */,
 			);
 			path = TCA;
-			sourceTree = "<group>";
-		};
-		1ADB1C302C8C5E7F00DA3CE1 /* Loader */ = {
-			isa = PBXGroup;
-			children = (
-				1ADB1C2D2C8C5B7500DA3CE1 /* PageLoader.swift */,
-				1ADB1C312C8C5E8C00DA3CE1 /* PageLoaderView.swift */,
-			);
-			path = Loader;
 			sourceTree = "<group>";
 		};
 		1ADB1C332C8C608000DA3CE1 /* UserList */ = {
@@ -557,7 +543,6 @@
 				1ADB1C692C8CB56600DA3CE1 /* ErrorView.swift in Sources */,
 				1ADB1C4A2C8C72EF00DA3CE1 /* UserListRow.swift in Sources */,
 				1ACB661C2C8D9E0200B9D982 /* WebContent.swift in Sources */,
-				1ADB1C2E2C8C5B7500DA3CE1 /* PageLoader.swift in Sources */,
 				1ADB1C422C8C6F9600DA3CE1 /* Window.swift in Sources */,
 				1ADB1BC62C8C4E1900DA3CE1 /* Github_PlaygroundsApp.swift in Sources */,
 				1ADB1C512C8C7AC800DA3CE1 /* UserDetailsView.swift in Sources */,
@@ -576,7 +561,6 @@
 				1ADB1C442C8C6FCB00DA3CE1 /* WindowView.swift in Sources */,
 				1ADB1C622C8CA0D000DA3CE1 /* UserReposAPI.swift in Sources */,
 				1ADB1C272C8C547C00DA3CE1 /* User.swift in Sources */,
-				1ADB1C322C8C5E8C00DA3CE1 /* PageLoaderView.swift in Sources */,
 				1ACB66222C8DA37D00B9D982 /* Support.swift in Sources */,
 				1ADB1C602C8C9FA200DA3CE1 /* Repository.swift in Sources */,
 				1ADB1C372C8C60A000DA3CE1 /* UserListView.swift in Sources */,
@@ -600,7 +584,7 @@
 				1ADB1C5C2C8C94FD00DA3CE1 /* UserDetailsAPITests.swift in Sources */,
 				1ABDF63E2C8DD2590050434F /* UserDetailsSnapshotTests.swift in Sources */,
 				1ACB66242C8DA3F600B9D982 /* SupportTests.swift in Sources */,
-				1A8AABA72C8DC35500980938 /* PageLoaderTests.swift in Sources */,
+				1A8AABA72C8DC35500980938 /* UserListTests.swift in Sources */,
 				1ABDF6342C8DC7880050434F /* SnapshotHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

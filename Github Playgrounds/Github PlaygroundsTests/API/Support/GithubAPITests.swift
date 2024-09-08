@@ -16,7 +16,9 @@ final class GithubAPITests: XCTestCase {
     }
     
     func testURLRequestIsWellFormed() throws {
-        let request = try MockAPI().urlRequest()
+        let mockAPI = MockAPI()
+        let url = try XCTUnwrap(mockAPI.url)
+        let request = try mockAPI.urlRequest(for: url)
         if let header = request.allHTTPHeaderFields {
             XCTAssertEqual(header["Accept"], "application/vnd.github+json")
             XCTAssertEqual(header["User-Agent"], "James-Github-Playgrounds")

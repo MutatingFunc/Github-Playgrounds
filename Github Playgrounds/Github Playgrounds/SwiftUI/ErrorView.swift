@@ -3,14 +3,31 @@ import SwiftUI
 struct ErrorView: View {
     var description: LocalizedStringKey
     var error: Error
+    var retry: (() -> ())?
     
     var body: some View {
         GroupBox(description) {
+            VStack(alignment: .leading) {
 #if DEBUG
-            Text("\(error)")
+                Text("\(error)")
 #else
-            Text(error.localizedDescription)
+                Text(error.localizedDescription)
 #endif
+                if let retry {
+                    HStack {
+                        Spacer()
+                        Button {
+                            retry()
+                        } label: {
+                            Spacer()
+                            Text("Retry")
+                            Spacer()
+                        }
+                        .buttonStyle(.bordered)
+                        .foregroundStyle(.foreground)
+                    }
+                }
+            }
         }.groupBoxStyle(ErrorGroupBoxStyle())
     }
 }
@@ -29,6 +46,12 @@ struct ErrorGroupBoxStyle: GroupBoxStyle {
     }
 }
 
-#Preview {
+#Preview("Retry") {
+    ErrorView(description: "Test", error: CocoaError(.fileNoSuchFile)) {
+        // Retry
+    }
+}
+
+#Preview("No retry") {
     ErrorView(description: "Test", error: CocoaError(.fileNoSuchFile))
 }

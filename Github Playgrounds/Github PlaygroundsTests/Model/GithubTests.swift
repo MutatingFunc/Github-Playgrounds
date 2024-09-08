@@ -6,8 +6,9 @@ final class GithubTests: XCTestCase {
     
     func testUsersMapping() async throws {
         let usersReponse = UsersAPI().previewData()
+        let github = GithubLive() // With mocked dependencies!
         
-        let users = try await GithubLive().users()
+        let (users, page) = try await github.users(page: nil)
         
         XCTAssertEqual(users.count, usersReponse.count)
         
@@ -15,6 +16,9 @@ final class GithubTests: XCTestCase {
         let preview = try XCTUnwrap(usersReponse.first)
         XCTAssertEqual(actual.username, preview.login)
         XCTAssertEqual(actual.id, preview.id)
+        
+        let nextPage = try await github.users(page: page).nextPage
+        XCTAssertNil(nextPage)
     }
     
     func testUserDetailsMapping() async throws {
@@ -36,8 +40,9 @@ final class GithubTests: XCTestCase {
     func testUserReposMapping() async throws {
         let user: User = .preview()
         let reposResponse = UserReposAPI(username: user.username).previewData()
+        let github = GithubLive() // With mocked dependencies!
         
-        let repos = try await GithubLive().repos(for: user)
+        let (repos, page) = try await github.repos(for: user, page: nil)
         
         XCTAssertEqual(repos.count, reposResponse.count)
         
@@ -64,5 +69,8 @@ final class GithubTests: XCTestCase {
         XCTAssertEqual(actual.pushed?.ISO8601Format(), preview.pushed_at)
         XCTAssertEqual(actual.created?.ISO8601Format(), preview.created_at)
         XCTAssertEqual(actual.updated?.ISO8601Format(), preview.updated_at)
+        
+        let nextPage = try await github.repos(for: user, page: page).nextPage
+        XCTAssertNil(nextPage)
     }
 }

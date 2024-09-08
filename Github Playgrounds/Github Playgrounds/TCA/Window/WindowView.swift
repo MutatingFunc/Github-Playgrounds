@@ -6,16 +6,14 @@ struct WindowView: View {
     
     var body: some View {
         NavigationSplitView(columnVisibility: $store.columnVisibility.sending(\.columnVisibilityChanged)) {
-            PageLoaderView(store: store.scope(state: \.userList, action: \.userList)) { store in
-                UserListView(store: store)
-                    .navigationDestination(item: $store.scope(state: \.selectedUser, action: \.selectedUser)) { store in
-                        UserDetailsView(store: store)
-                            .id(store.user.id)
-                            .navigationDestination(item: $store.scope(state: \.selectedRepo, action: \.selectedRepo)) { store in
-                                WebContentView(store: store)
-                            }
-                    }
-            }
+            UserListView(store: store.scope(state: \.userList, action: \.userList))
+                .navigationDestination(item: $store.scope(state: \.selectedUser, action: \.selectedUser)) { store in
+                    UserDetailsView(store: store)
+                        .id(store.user.id)
+                        .navigationDestination(item: $store.scope(state: \.selectedRepo, action: \.selectedRepo)) { store in
+                            WebContentView(store: store)
+                        }
+                }
         } detail: {
             NavigationStack {
                 Text("No selection")

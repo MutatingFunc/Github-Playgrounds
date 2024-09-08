@@ -141,9 +141,9 @@ struct UserReposAPI: GithubAPI {
         var archived: Bool // false,
         var disabled: Bool // false,
         // "visibility": "public",
-        var pushed_at: String // "2011-01-26T19:06:43Z",
+        var pushed_at: String? // "2011-01-26T19:06:43Z",
         var created_at: String // "2011-01-26T19:01:12Z",
-        var updated_at: String // "2011-01-26T19:14:43Z",
+        var updated_at: String? // "2011-01-26T19:14:43Z",
         // "permissions": {
         //   "admin": false,
         //   "push": false,
