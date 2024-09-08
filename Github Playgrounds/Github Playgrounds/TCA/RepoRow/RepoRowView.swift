@@ -40,14 +40,11 @@ struct RepoRowView: View {
                 forks: store.repo.forkCount
             )
         Group {
-            if let url = store.repo.url {
-                Link(destination: url) {
-                    HStack {
-                        visual
-                        Image(systemName: "arrow.up.right.square")
-                            .accessibilityHidden(true)
-                            .foregroundStyle(.tint)
-                    }
+            if store.webContent != nil {
+                Button {
+                    store.send(.open)
+                } label: {
+                    visual
                 }
                 .buttonStyle(.plain)
             } else {

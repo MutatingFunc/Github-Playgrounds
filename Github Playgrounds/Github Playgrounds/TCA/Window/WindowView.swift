@@ -8,12 +8,18 @@ struct WindowView: View {
         NavigationSplitView {
             PageLoaderView(store: store.scope(state: \.userList, action: \.userList)) { store in
                 UserListView(store: store)
-            }.navigationDestination(item: $store.scope(state: \.selectedUser, action: \.selectedUser)) { store in
-                UserDetailsView(store: store)
-                    .id(store.user.id)
+                    .navigationDestination(item: $store.scope(state: \.selectedUser, action: \.selectedUser)) { store in
+                        UserDetailsView(store: store)
+                            .id(store.user.id)
+                            .navigationDestination(item: $store.scope(state: \.selectedRepo, action: \.selectedRepo)) { store in
+                                WebContentView(store: store)
+                            }
+                    }
             }
         } detail: {
-            Text("No selection")
+            NavigationStack {
+                Text("No selection")
+            }
         }
     }
 }

@@ -64,6 +64,7 @@ struct GithubLive: Github {
                     id: repo.id,
                     name: repo.name,
                     path: repo.full_name,
+                    url: URL(string: repo.html_url),
                     description: repo.description ?? "",
                     language: repo.language,
                     isFork: repo.fork,

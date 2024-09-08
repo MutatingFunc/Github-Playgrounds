@@ -2,64 +2,63 @@ import SwiftUI
 import ComposableArchitecture
 
 struct UserDetailsView: View {
-    var store: StoreOf<UserDetails>
+    @Bindable var store: StoreOf<UserDetails>
     
     var body: some View {
-        let details = store.user.details
-        VStack(spacing: 0) {
-            HStack {
-                AvatarView(avatar: store.loadedAvatar, imageSize: 64)
-                    .accessibilityHidden(true)
-                Group {
-                    if let error = store.detailsLoadError {
-                        ErrorView(description: "Error loading user details", error: error)
-                    } else {
-                        Group {
-                            if let fullName = details?.fullName {
-                                Text(fullName)
-                            } else {
-                                Text("Anonymous")
-                                    .redacted(reason: .placeholder)
+            VStack(spacing: 0) {
+                HStack {
+                    AvatarView(avatar: store.loadedAvatar, imageSize: 64)
+                        .accessibilityHidden(true)
+                    Group {
+                        if let error = store.detailsLoadError {
+                            ErrorView(description: "Error loading user details", error: error)
+                        } else {
+                            Group {
+                                if let fullName = store.user.details?.fullName {
+                                    Text(fullName)
+                                } else {
+                                    Text("Anonymous")
+                                        .redacted(reason: .placeholder)
+                                }
                             }
+                            .font(.title)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .userStats(
+                                following: store.user.details?.followingCount,
+                                followers: store.user.details?.followersCount
+                            )
                         }
-                        .font(.title)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .userStats(
-                            following: store.user.details?.followingCount,
-                            followers: store.user.details?.followersCount
-                        )
                     }
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding()
+                .background(.bar, ignoresSafeAreaEdges: .all)
+                Divider().edgesIgnoringSafeArea(.all)
+                List {
+                    Section {
+                        ForEach(store.scope(state: \.rows, action: \.repoRow)) { store in
+                            RepoRowView(store: store)
+                        }
+                        if store.isLoadingRepos {
+                            ProgressView("Loading…")
+                                .frame(maxWidth: .infinity)
+                        }
+                    } header: {
+                        if let error = store.reposLoadError {
+                            ErrorView(description: "Error loading repositories", error: error)
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(Color(uiColor: .systemGroupedBackground))
+                        }
+                    }.headerProminence(.standard)
+                }
             }
-            .padding()
-            .background(.bar, ignoresSafeAreaEdges: .all)
-            Divider().edgesIgnoringSafeArea(.all)
-            List {
-                Section {
-                    ForEach(store.scope(state: \.rows, action: \.repoRow)) { store in
-                        RepoRowView(store: store)
-                    }
-                    if store.isLoadingRepos {
-                        ProgressView("Loading…")
-                            .frame(maxWidth: .infinity)
-                    }
-                } header: {
-                    if let error = store.reposLoadError {
-                        ErrorView(description: "Error loading repositories", error: error)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color(uiColor: .systemGroupedBackground))
-                    }
-                }.headerProminence(.standard)
+            .navigationTitle(store.user.username)
+            .navigationBarTitleDisplayMode(.inline)
+            .task(id: store.user.id) {
+                store.send(.loadDetails)
+                store.send(.loadRepos)
             }
-        }
-        .navigationTitle(store.user.username)
-        .navigationBarTitleDisplayMode(.inline)
-        .task(id: store.user.id) {
-            store.send(.loadDetails)
-            store.send(.loadRepos)
-        }
     }
 }
 

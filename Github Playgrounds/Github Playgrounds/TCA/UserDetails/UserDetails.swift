@@ -4,13 +4,15 @@ import ComposableArchitecture
 @Reducer
 struct UserDetails {
     @ObservableState
-    struct State {
+    struct State: Identifiable {
         @Shared var user: User
         var isLoadingRepos = false
         var rows: IdentifiedArrayOf<RepoRow.State> = []
         var reposLoadError: Error? = nil
         var detailsLoadError: Error? = nil
         var loadedAvatar: Result<Image, Error>?
+        
+        var id: User.ID { user.id }
     }
     
     enum Action {

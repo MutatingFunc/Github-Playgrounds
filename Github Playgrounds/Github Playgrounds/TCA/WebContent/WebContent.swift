@@ -2,27 +2,22 @@ import SwiftUI
 import ComposableArchitecture
 
 @Reducer
-struct RepoRow {
+struct WebContent {
     @ObservableState
-    struct State: Identifiable {
-        var repo: User.Repository
-        var id: User.Repository.ID { repo.id }
-        
-        var webContent: WebContent.State? { repo.url.map { .init(url: $0) } }
+    struct State {
+        var url: URL
     }
-    
     enum Action {
-        case open
+        case close
     }
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
-            case .open:
+            case .close:
                 break
             }
             return .none
         }
     }
 }
-
