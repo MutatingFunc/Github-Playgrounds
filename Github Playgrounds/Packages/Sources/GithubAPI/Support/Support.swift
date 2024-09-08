@@ -1,4 +1,4 @@
-import SwiftUI
+import Foundation
 
 public enum Support {
     // Fetches the access token from `Resources/Access Token.txt`.

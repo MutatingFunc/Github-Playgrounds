@@ -1,4 +1,4 @@
-import SwiftUI
+import Foundation
 
 /// An error produced when accessing the GithubAPI.
 public enum GithubAPIError: String, LocalizedError {

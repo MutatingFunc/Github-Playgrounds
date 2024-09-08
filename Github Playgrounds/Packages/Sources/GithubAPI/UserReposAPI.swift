@@ -1,4 +1,4 @@
-import SwiftUI
+import Foundation
 
 /// Fetches a list of repositories for the given user.
 public struct UserReposAPI: GithubAPI {

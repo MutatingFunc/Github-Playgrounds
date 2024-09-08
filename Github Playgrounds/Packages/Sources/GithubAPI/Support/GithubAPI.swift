@@ -1,4 +1,4 @@
-import SwiftUI
+import Foundation
 
 private let baseURL = "https://api.github.com/"
 

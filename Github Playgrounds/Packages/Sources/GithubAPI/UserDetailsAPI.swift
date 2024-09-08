@@ -1,4 +1,4 @@
-import SwiftUI
+import Foundation
 
 /// Fetches details of a given user.
 public struct UserDetailsAPI: GithubAPI {

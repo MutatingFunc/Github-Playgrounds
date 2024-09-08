@@ -1,4 +1,4 @@
-import SwiftUI
+import Foundation
 
 extension User {
     /// The further details of a Github user which may be fetched at a later time.

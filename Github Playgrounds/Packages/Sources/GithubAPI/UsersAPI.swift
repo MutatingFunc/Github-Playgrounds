@@ -1,4 +1,4 @@
-import SwiftUI
+import Foundation
 
 /// Fetches a list of users.
 public struct UsersAPI: GithubAPI {
