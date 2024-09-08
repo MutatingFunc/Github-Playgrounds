@@ -11,6 +11,7 @@
 		1A8AABA42C8DC08C00980938 /* XCUIElementExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8AABA32C8DC08C00980938 /* XCUIElementExtensions.swift */; };
 		1A8AABA72C8DC35500980938 /* UserListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8AABA52C8DC35100980938 /* UserListTests.swift */; };
 		1AA09AC72C8E4BD100A856E9 /* GithubModels in Frameworks */ = {isa = PBXBuildFile; productRef = 1AA09AC62C8E4BD100A856E9 /* GithubModels */; };
+		1AA09AC92C8E544F00A856E9 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1AA09AC82C8E544F00A856E9 /* Localizable.xcstrings */; };
 		1ABDF6322C8DC6A40050434F /* UserListSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABDF6312C8DC6A40050434F /* UserListSnapshotTests.swift */; };
 		1ABDF6342C8DC7880050434F /* SnapshotHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABDF6332C8DC7880050434F /* SnapshotHelpers.swift */; };
 		1ABDF63A2C8DCA520050434F /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 1ABDF6392C8DCA520050434F /* ComposableArchitecture */; };
@@ -62,9 +63,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A3DE2682C8E5D5E00E076A3 /* Github Playgrounds Japanese.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Github Playgrounds Japanese.xctestplan"; sourceTree = "<group>"; };
 		1A8AABA32C8DC08C00980938 /* XCUIElementExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCUIElementExtensions.swift; sourceTree = "<group>"; };
 		1A8AABA52C8DC35100980938 /* UserListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListTests.swift; sourceTree = "<group>"; };
 		1AA09AC32C8E483E00A856E9 /* Packages */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Packages; sourceTree = "<group>"; };
+		1AA09AC82C8E544F00A856E9 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		1ABDF6312C8DC6A40050434F /* UserListSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListSnapshotTests.swift; sourceTree = "<group>"; };
 		1ABDF6332C8DC7880050434F /* SnapshotHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelpers.swift; sourceTree = "<group>"; };
 		1ABDF6382C8DCA4E0050434F /* Github-Playgrounds-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Github-Playgrounds-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -159,6 +162,7 @@
 		1ADB1BB92C8C4E1900DA3CE1 = {
 			isa = PBXGroup;
 			children = (
+				1A3DE2682C8E5D5E00E076A3 /* Github Playgrounds Japanese.xctestplan */,
 				1AA09AC32C8E483E00A856E9 /* Packages */,
 				1ADB1BC42C8C4E1900DA3CE1 /* Github Playgrounds */,
 				1ADB1BD62C8C4E1A00DA3CE1 /* Github PlaygroundsTests */,
@@ -188,6 +192,7 @@
 				1ADB1BC92C8C4E1A00DA3CE1 /* Assets.xcassets */,
 				1ADB1BCB2C8C4E1A00DA3CE1 /* Github_Playgrounds.entitlements */,
 				1ADB1BCC2C8C4E1A00DA3CE1 /* Preview Content */,
+				1AA09AC82C8E544F00A856E9 /* Localizable.xcstrings */,
 			);
 			path = "Github Playgrounds";
 			sourceTree = "<group>";
@@ -389,6 +394,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
 			);
 			mainGroup = 1ADB1BB92C8C4E1900DA3CE1;
 			packageReferences = (
@@ -414,6 +420,7 @@
 			files = (
 				1ADB1BCE2C8C4E1A00DA3CE1 /* Preview Assets.xcassets in Resources */,
 				1ADB1BCA2C8C4E1A00DA3CE1 /* Assets.xcassets in Resources */,
+				1AA09AC92C8E544F00A856E9 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

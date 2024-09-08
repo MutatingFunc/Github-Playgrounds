@@ -7,5 +7,5 @@ public enum GithubAPIError: String, LocalizedError {
     case invalidAvatarURL = "Avatar URL was invalid"
     case invalidAvatarData = "Failed to convert avatar data to an image"
     
-    public var errorDescription: String? { rawValue }
+    public var errorDescription: String? { NSLocalizedString(self.rawValue, comment: "GithubAPIError") }
 }

@@ -3,7 +3,7 @@ import XCTest
 struct UserListRobot: Robot {
     
     init() {
-        XCTAssert(app.navigationBars["Users"].isHittable)
+        XCTAssert(app.collectionViews["Users"].isHittable)
     }
     
     private func userRow(_ name: String) -> XCUIElement {

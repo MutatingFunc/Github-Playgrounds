@@ -20,12 +20,14 @@ struct UserListView: View {
                 }
             } footer: {
                 if let error = store.loadError {
-                    ErrorView(description: "Error loading users", error: error) {
+                    ErrorView(description: "Failed to load users", error: error) {
                         store.send(.loadPage)
                     }.padding(.horizontal)
                 }
             }.headerProminence(.standard)
-        }.navigationTitle("Users")
+        }
+        .navigationTitle("Users")
+        .accessibilityIdentifier("Users")
     }
 }
 

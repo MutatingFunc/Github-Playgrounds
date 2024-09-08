@@ -13,7 +13,7 @@ struct UserDetailsView: View {
                         .accessibilityHidden(true)
                     Group {
                         if let error = store.detailsLoadError {
-                            ErrorView(description: "Error loading user details", error: error) {
+                            ErrorView(description: "Failed to load user details", error: error) {
                                 store.send(.loadDetails)
                             }
                         } else {
@@ -53,7 +53,7 @@ struct UserDetailsView: View {
                         }
                     } footer: {
                         if let error = store.reposLoadError {
-                            ErrorView(description: "Error loading repositories", error: error) {
+                            ErrorView(description: "Failed to load repositories", error: error) {
                                 store.send(.loadReposPage)
                             }
                             .padding(.horizontal)
