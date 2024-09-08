@@ -6,7 +6,7 @@ private enum GithubFetcherKey: DependencyKey {
     static var previewValue: any GithubFetcher { GithubFetcherPreview() }
     static var testValue: any GithubFetcher { GithubFetcherPreview() }
 }
-extension DependencyValues {
+public extension DependencyValues {
     /// The configured networking environment, for fetching data from Github APIs.
     var githubFetcher: any GithubFetcher {
         get { self[GithubFetcherKey.self] }
@@ -15,14 +15,14 @@ extension DependencyValues {
 }
 
 /// Represents a paginated API page.
-struct Page {
+public struct Page {
     fileprivate var url: URL
     init(url: URL) {
         self.url = url
     }
     
     /// Create from a link header received via API.
-    init?(nextInLinkHeader linkHeader: String) {
+    public init?(nextInLinkHeader linkHeader: String) {
         let regex = /<([^>]*)>; rel="next"/
         do {
             let urlString = try regex.firstMatch(in: linkHeader)?.output.1
@@ -36,10 +36,14 @@ struct Page {
             return nil
         }
     }
+    
+    public static func preview() -> Self {
+        Self.init(url: URL(string: "about:blank")!)
+    }
 }
 
 /// The protocol for the networking layer. This may be mocked out.
-protocol GithubFetcher {
+public protocol GithubFetcher {
     /// Fetches content from an API, optionally fetching content following a given page.
     /// - Parameters:
     ///   - api: The API to fetch from.
@@ -70,9 +74,9 @@ struct GithubFetcherLive: GithubFetcher {
 /// A type which uses the mocked calls provided by APIs. To be used by previews, snapshot tests, etc.
 struct GithubFetcherPreview: GithubFetcher {
     var delay: Int = 1
-    var error: Error?
+    var error: Error? = nil
     
-    func fetch<API: GithubAPI>(from api: API, page: Page?) async throws -> (response: API.Response, nextPage: Page?) {
+    public func fetch<API: GithubAPI>(from api: API, page: Page?) async throws -> (response: API.Response, nextPage: Page?) {
         try await Task.sleep(for: .seconds(delay))
         if let error {
             throw error

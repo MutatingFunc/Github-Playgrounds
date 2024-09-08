@@ -1,14 +1,14 @@
 import XCTest
-@testable import Github_Playgrounds
+@testable import GithubAPI
 
 final class UserReposAPITests: XCTestCase {
     
-    func testCanGetURLForUserDetails() {
-        let user: User = .preview()
+    func testCanGetURLForUserDetails() throws {
+        let user = try XCTUnwrap(UsersAPI().previewData().first)
         
-        let api = UserReposAPI(username: user.username)
+        let api = UserReposAPI(username: user.login)
         
-        XCTAssertEqual(api.url, URL(string: "https://api.github.com/users/\(user.username)/repos?kind=\(api.kind.rawValue)&sort=\(api.sort.rawValue)&page=\(api.page)"))
+        XCTAssertEqual(api.url, URL(string: "https://api.github.com/users/\(user.login)/repos?kind=\(api.kind.rawValue)&sort=\(api.sort.rawValue)"))
     }
     
     func testReposParsing() throws {

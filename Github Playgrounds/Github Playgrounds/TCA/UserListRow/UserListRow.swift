@@ -1,5 +1,6 @@
 import SwiftUI
 import ComposableArchitecture
+import GithubModels
 
 @Reducer
 struct UserListRow {

@@ -1,24 +1,28 @@
 import SwiftUI
 
 /// Fetches a list of repositories for the given user.
-struct UserReposAPI: GithubAPI {
-    var username: String
+public struct UserReposAPI: GithubAPI {
+    public var username: String
     
-    var kind: Kind = .owner
-    enum Kind: String { case all, owner, member }
+    public var kind: Kind
+    public enum Kind: String { case all, owner, member }
     
-    var sort: Sort = .full_name
-    enum Sort: String { case created, updated, pushed, full_name }
+    public var sort: Sort
+    public enum Sort: String { case created, updated, pushed, full_name }
     
-    var page: Int = 1
-    
-    var apiPath: String {
-        // Avoid invalid characters in username breaking the URL
-        let username = username.addingPercentEncoding(withAllowedCharacters: .alphanumerics) ?? username
-        return "users/\(username)/repos?kind=\(kind.rawValue)&sort=\(sort.rawValue)&page=\(page)"
+    public init(username: String, kind: Kind = .owner, sort: Sort = .full_name) {
+        self.username = username
+        self.kind = kind
+        self.sort = sort
     }
     
-    func previewData() -> [Repository] {
+    public var apiPath: String {
+        // Avoid invalid characters in username breaking the URL
+        let username = username.addingPercentEncoding(withAllowedCharacters: .alphanumerics) ?? username
+        return "users/\(username)/repos?kind=\(kind.rawValue)&sort=\(sort.rawValue)"
+    }
+    
+    public func previewData() -> [Repository] {
         [
             Repository(
                 id: 1296269,
@@ -46,11 +50,11 @@ struct UserReposAPI: GithubAPI {
         ]
     }
     
-    struct Repository: Decodable {
-        var id: Int // 1296269,
+    public struct Repository: Decodable {
+        public var id: Int // 1296269,
         // "node_id": "MDEwOlJlcG9zaXRvcnkxMjk2MjY5",
-        var name: String // "Hello-World",
-        var full_name: String // "octocat/Hello-World",
+        public var name: String // "Hello-World",
+        public var full_name: String // "octocat/Hello-World",
         // "owner": {
         //   "login": "octocat",
         //   "id": 1,
@@ -72,9 +76,9 @@ struct UserReposAPI: GithubAPI {
         //   "site_admin": false
         // },
         // "private": false,
-        var html_url: String // "https://github.com/octocat/Hello-World",
-        var description: String? // "This your first repo!",
-        var fork: Bool // false,
+        public var html_url: String // "https://github.com/octocat/Hello-World",
+        public var description: String? // "This your first repo!",
+        public var fork: Bool // false,
         // "url": "https://api.github.com/repos/octocat/Hello-World",
         // "archive_url": "https://api.github.com/repos/octocat/Hello-World/{archive_format}{/ref}",
         // "assignees_url": "https://api.github.com/repos/octocat/Hello-World/assignees{/user}",
@@ -118,10 +122,10 @@ struct UserReposAPI: GithubAPI {
         // "hooks_url": "https://api.github.com/repos/octocat/Hello-World/hooks",
         // "svn_url": "https://svn.github.com/octocat/Hello-World",
         // "homepage": "https://github.com",
-        var language: String? // null,
-        var forks_count: Int // 9,
-        var stargazers_count: Int // 80,
-        var watchers_count: Int // 80,
+        public var language: String? // null,
+        public var forks_count: Int // 9,
+        public var stargazers_count: Int // 80,
+        public var watchers_count: Int // 80,
         // "size": 108,
         // "default_branch": "master",
         // "open_issues_count": 0,
@@ -132,18 +136,18 @@ struct UserReposAPI: GithubAPI {
         //   "electron",
         //   "api"
         // ],
-        var has_issues: Bool // true,
-        var has_projects: Bool // true,
-        var has_wiki: Bool // true,
-        var has_pages: Bool // false,
-        var has_downloads: Bool // true,
-        var has_discussions: Bool // false,
-        var archived: Bool // false,
-        var disabled: Bool // false,
+        public var has_issues: Bool // true,
+        public var has_projects: Bool // true,
+        public var has_wiki: Bool // true,
+        public var has_pages: Bool // false,
+        public var has_downloads: Bool // true,
+        public var has_discussions: Bool // false,
+        public var archived: Bool // false,
+        public var disabled: Bool // false,
         // "visibility": "public",
-        var pushed_at: String? // "2011-01-26T19:06:43Z",
-        var created_at: String // "2011-01-26T19:01:12Z",
-        var updated_at: String? // "2011-01-26T19:14:43Z",
+        public var pushed_at: String? // "2011-01-26T19:06:43Z",
+        public var created_at: String // "2011-01-26T19:01:12Z",
+        public var updated_at: String? // "2011-01-26T19:14:43Z",
         // "permissions": {
         //   "admin": false,
         //   "push": false,

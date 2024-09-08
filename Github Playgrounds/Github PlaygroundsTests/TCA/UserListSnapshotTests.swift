@@ -2,6 +2,7 @@ import XCTest
 import ComposableArchitecture
 import SnapshotTesting
 import SwiftUI
+import GithubModels
 @testable import Github_Playgrounds
 
 final class UserListSnapshotTests: XCTestCase {

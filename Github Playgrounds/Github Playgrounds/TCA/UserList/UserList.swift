@@ -1,12 +1,13 @@
 import SwiftUI
 import ComposableArchitecture
+import GithubModels
 
 @Reducer
 struct UserList {
     @ObservableState
     struct State {
         var reachedEnd = false
-        var nextPage: Page? = nil
+        var nextPage: GithubPage? = nil
         var loadError: Error? = nil
         var rows: IdentifiedArrayOf<UserListRow.State>
         init(users: [User]) {
@@ -18,7 +19,7 @@ struct UserList {
     
     enum Action {
         case loadPage
-        case loadedUsers([User], nextPage: Page?)
+        case loadedUsers([User], nextPage: GithubPage?)
         case gotError(Error)
         case rows(IdentifiedActionOf<UserListRow>)
     }

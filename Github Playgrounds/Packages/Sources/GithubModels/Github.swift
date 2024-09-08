@@ -1,12 +1,13 @@
 import SwiftUI
 import ComposableArchitecture
+import GithubAPI
 
 private enum GithubKey: DependencyKey {
     static var liveValue: any Github { GithubLive() }
     static var previewValue: any Github { GithubPreview() }
     static var testValue: any Github { GithubPreview() }
 }
-extension DependencyValues {
+public extension DependencyValues {
     /// The Github model from which the UI will access data.
     var github: any Github {
         get { self[GithubKey.self] }
@@ -15,7 +16,7 @@ extension DependencyValues {
 }
 
 /// Represents the Github API surface
-protocol Github {
+public protocol Github {
     /// Produces a list of users.
     func users(page: Page?) async throws -> (users: [User], nextPage: Page?)
     /// Produces the details for a given user.
@@ -24,11 +25,13 @@ protocol Github {
     func repos(for user: User, page: Page?) async throws -> (repos: [User.Repository], nextPage: Page?)
 }
 
+public typealias GithubPage = Page
+
 struct GithubLive: Github {
     @Dependency(\.githubFetcher) private var githubFetcher
     @Dependency(\.urlSession) private var urlSession
     
-    func users(page: Page?) async throws -> (users: [User], nextPage: Page?) {
+    public func users(page: Page?) async throws -> (users: [User], nextPage: Page?) {
         let (response, page) = try await githubFetcher.fetch(from: UsersAPI(), page: page)
         let model = response.map { user in
             User(
@@ -41,7 +44,7 @@ struct GithubLive: Github {
         return (model, page)
     }
     
-    func details(for user: User) async throws -> User.Details {
+    public func details(for user: User) async throws -> User.Details {
         let (details, _) = try await githubFetcher
             .fetch(from: UserDetailsAPI(username: user.username), page: nil)
         return User.Details(
@@ -56,7 +59,7 @@ struct GithubLive: Github {
         )
     }
     
-    func repos(for user: User, page: Page?) async throws -> (repos: [User.Repository], nextPage: Page?) {
+    public func repos(for user: User, page: Page?) async throws -> (repos: [User.Repository], nextPage: Page?) {
         let (response, page) = try await githubFetcher
             .fetch(from: UserReposAPI(username: user.username), page: page)
         let model = response.map { repo in
@@ -99,19 +102,22 @@ struct GithubLive: Github {
     }
 }
 
-struct GithubPreview: Github {
-    var error: Error?
+public struct GithubPreview: Github {
+    public var error: Error?
+    public init(error: Error? = nil) {
+        self.error = error
+    }
     
-    func users(page: Page?) async throws -> (users: [User], nextPage: Page?) {
+    public func users(page: Page?) async throws -> (users: [User], nextPage: Page?) {
         if let error {
             throw error
         }
         try await Task.sleep(for: .seconds(0.5))
-        let nextPage = page == nil ? Page(url: URL(string: "about:blank")!) : nil
+        let nextPage = page == nil ? Page.preview() : nil
         return ([User.preview()], nextPage)
     }
     
-    func details(for user: User) async throws -> User.Details {
+    public func details(for user: User) async throws -> User.Details {
         if let error {
             throw error
         }
@@ -119,12 +125,12 @@ struct GithubPreview: Github {
         return User.Details.preview()
     }
     
-    func repos(for user: User, page: Page?) async throws -> (repos: [User.Repository], nextPage: Page?) {
+    public func repos(for user: User, page: Page?) async throws -> (repos: [User.Repository], nextPage: Page?) {
         if let error {
             throw error
         }
         try await Task.sleep(for: .seconds(0.5))
-        let nextPage = page == nil ? Page(url: URL(string: "about:blank")!) : nil
+        let nextPage = page == nil ? Page.preview() : nil
         return ([User.Repository.preview()], nextPage)
     }
 }

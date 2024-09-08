@@ -2,17 +2,17 @@ import SwiftUI
 
 extension User {
     /// The further details of a Github user which may be fetched at a later time.
-    struct Details {
-        var fullName: String
-        var company: String
-        var location: String
-        var email: String
-        var bio: String
-        var repoCount: Int
-        var followingCount: Int
-        var followersCount: Int
+    public struct Details {
+        public var fullName: String
+        public var company: String
+        public var location: String
+        public var email: String
+        public var bio: String
+        public var repoCount: Int
+        public var followingCount: Int
+        public var followersCount: Int
         
-        static func preview() -> Self {
+        public static func preview() -> Self {
             Self(
                 fullName: "monalisa octocat",
                 company: "GitHub",

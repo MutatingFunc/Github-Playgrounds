@@ -1,5 +1,6 @@
 import SwiftUI
 import ComposableArchitecture
+import GithubModels
 
 @Reducer
 struct UserDetails {
@@ -10,7 +11,7 @@ struct UserDetails {
         var loadedAvatar: Result<Image, Error>?
         
         var reachedReposEnd: Bool
-        var nextReposPage: Page?
+        var nextReposPage: GithubPage?
         var reposLoadError: Error?
         var rows: IdentifiedArrayOf<RepoRow.State>
         
@@ -21,7 +22,7 @@ struct UserDetails {
             detailsLoadError: Error? = nil,
             loadedAvatar: Result<Image, Error>? = nil,
             reachedReposEnd: Bool = false,
-            nextReposPage: Page? = nil,
+            nextReposPage: GithubPage? = nil,
             reposLoadError: Error? = nil,
             repos: [User.Repository] = []
         ) {
@@ -41,7 +42,7 @@ struct UserDetails {
         case loadDetails
         case loadedDetails(Result<User.Details, Error>)
         case loadReposPage
-        case loadedRepos([User.Repository], nextPage: Page?)
+        case loadedRepos([User.Repository], nextPage: GithubPage?)
         case gotReposError(Error)
         case repoRow(IdentifiedActionOf<RepoRow>)
     }

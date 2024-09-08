@@ -3,7 +3,7 @@ import SwiftUI
 private let baseURL = "https://api.github.com/"
 
 /// Represents one of Github's APIs. Conforming requires declaring what the GithubFetcher implementation needs to fetch from this API.
-protocol GithubAPI {
+public protocol GithubAPI {
     /// The API path to fetch data from.
     var apiPath: String { get }
     
@@ -16,7 +16,7 @@ protocol GithubAPI {
     /// A mock call & response used by the default previewing network layer.
     func previewData() -> Response
 }
-extension GithubAPI {
+public extension GithubAPI {
     func headers() throws -> [String: String] { [:] }
     
     /// The fully-formed API URL.

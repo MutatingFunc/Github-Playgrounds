@@ -1,5 +1,5 @@
 import XCTest
-@testable import Github_Playgrounds
+@testable import GithubAPI
 
 private struct MockAPI: GithubAPI {
     var apiPath: String { "mock" }

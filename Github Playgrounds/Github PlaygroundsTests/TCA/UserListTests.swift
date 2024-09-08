@@ -1,5 +1,6 @@
 import XCTest
 import ComposableArchitecture
+import GithubModels
 @testable import Github_Playgrounds
 
 final class UserListTests: XCTestCase {
@@ -17,7 +18,7 @@ final class UserListTests: XCTestCase {
     func testLoad() {
         XCTAssertEqual(store.rows.count, 0)
         
-        store.send(.loadedUsers([.preview()], nextPage: Page(url: URL(string: "about:blank")!)))
+        store.send(.loadedUsers([.preview()], nextPage: .preview()))
         XCTAssertEqual(store.rows.count, 1)
         XCTAssertFalse(store.reachedEnd)
         

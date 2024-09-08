@@ -1,5 +1,6 @@
 import SwiftUI
 import ComposableArchitecture
+import GithubModels
 
 struct UserListView: View {
     var store: StoreOf<UserList>

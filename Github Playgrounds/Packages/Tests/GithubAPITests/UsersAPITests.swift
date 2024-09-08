@@ -1,5 +1,5 @@
 import XCTest
-@testable import Github_Playgrounds
+@testable import GithubAPI
 
 final class UsersAPITests: XCTestCase {
     

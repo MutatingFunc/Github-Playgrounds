@@ -1,6 +1,7 @@
 import XCTest
 import ComposableArchitecture
-@testable import Github_Playgrounds
+import GithubAPI
+@testable import GithubModels
 
 final class GithubTests: XCTestCase {
     

@@ -1,6 +1,7 @@
 import SwiftUI
 import ComposableArchitecture
 import Tooltips
+import GithubModels
 
 struct UserDetailsView: View {
     @Bindable var store: StoreOf<UserDetails>

@@ -1,9 +1,9 @@
 import SwiftUI
 
-enum Support {
+public enum Support {
     // Fetches the access token from `Resources/Access Token.txt`.
     static func projectAccessToken() throws -> String {
-        if let url = Bundle.main.url(forResource: "Access Token", withExtension: "txt") {
+        if let url = Bundle.module.url(forResource: "Access Token", withExtension: "txt") {
             try String(contentsOf: url)
         } else {
             throw GithubAPIError.noAccessToken
@@ -18,7 +18,7 @@ enum Support {
         ]
     }
 
-    static func date(from string: String) -> Date? {
+    public static func date(from string: String) -> Date? {
         ISO8601DateFormatter().date(from: string)
     }
 

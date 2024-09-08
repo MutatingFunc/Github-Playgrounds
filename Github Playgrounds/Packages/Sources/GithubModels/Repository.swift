@@ -1,31 +1,32 @@
 import SwiftUI
+import GithubAPI
 
 extension User {
     /// The further details of a Github user which may be fetched at a later time.
-    struct Repository: Identifiable {
-        var id: Int
-        var name: String
-        var path: String
-        var url: URL?
-        var description: String
-        var language: String?
-        var isFork: Bool
-        var forkCount: Int
-        var starCount: Int
-        var watcherCount: Int
-        var hasIssues: Bool
-        var hasProjects: Bool
-        var hasWiki: Bool
-        var hasPages: Bool
-        var hasDownloads: Bool
-        var hasDiscussions: Bool
-        var archived: Bool
-        var disabled: Bool
-        var pushed: Date?
-        var created: Date?
-        var updated: Date?
+    public struct Repository: Identifiable {
+        public var id: Int
+        public var name: String
+        public var path: String
+        public var url: URL?
+        public var description: String
+        public var language: String?
+        public var isFork: Bool
+        public var forkCount: Int
+        public var starCount: Int
+        public var watcherCount: Int
+        public var hasIssues: Bool
+        public var hasProjects: Bool
+        public var hasWiki: Bool
+        public var hasPages: Bool
+        public var hasDownloads: Bool
+        public var hasDiscussions: Bool
+        public var archived: Bool
+        public var disabled: Bool
+        public var pushed: Date?
+        public var created: Date?
+        public var updated: Date?
         
-        static func preview() -> Self {
+        public static func preview() -> Self {
             Self(
                 id: UUID().hashValue,
                 name: "Hello-World",
