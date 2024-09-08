@@ -45,14 +45,10 @@ extension User {
                 hasDiscussions: false,
                 archived: false,
                 disabled: false,
-                pushed: date(from: "2011-01-26T19:06:43Z"),
-                created: date(from: "2011-01-26T19:01:12Z"),
-                updated: date(from: "2011-01-26T19:14:43Z")
+                pushed: Support.date(from: "2011-01-26T19:06:43Z"),
+                created: Support.date(from: "2011-01-26T19:01:12Z"),
+                updated: Support.date(from: "2011-01-26T19:14:43Z")
             )
         }
-    }
-    
-    static func date(from string: String) -> Date? {
-        ISO8601DateFormatter().date(from: string)
     }
 }

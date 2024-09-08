@@ -1,4 +1,3 @@
-import SwiftUI
 import XCTest
 @testable import Github_Playgrounds
 
@@ -12,16 +11,7 @@ private struct MockAPI: GithubAPI {
 
 final class GithubAPITests: XCTestCase {
     
-    func testCanReadAccessToken() {
-        do {
-            let token = try projectAccessToken()
-            XCTAssert(true, "Can read token\n\(token)")
-        } catch {
-            XCTAssert(false, "Error:\n\(error)")
-        }
-    }
-    
-    func canFormURL() {
+    func testCanFormURL() {
         XCTAssertNotNil(MockAPI().url)
     }
     

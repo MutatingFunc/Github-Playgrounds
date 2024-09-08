@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		1ACB661C2C8D9E0200B9D982 /* WebContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACB661B2C8D9E0200B9D982 /* WebContent.swift */; };
 		1ACB661E2C8D9E0C00B9D982 /* WebContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACB661D2C8D9E0C00B9D982 /* WebContentView.swift */; };
+		1ACB66202C8D9F2800B9D982 /* GithubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACB661F2C8D9F2800B9D982 /* GithubTests.swift */; };
+		1ACB66222C8DA37D00B9D982 /* Support.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACB66212C8DA37D00B9D982 /* Support.swift */; };
+		1ACB66242C8DA3F600B9D982 /* SupportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACB66232C8DA3F600B9D982 /* SupportTests.swift */; };
 		1ADB1BC62C8C4E1900DA3CE1 /* Github_PlaygroundsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB1BC52C8C4E1900DA3CE1 /* Github_PlaygroundsApp.swift */; };
 		1ADB1BCA2C8C4E1A00DA3CE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ADB1BC92C8C4E1A00DA3CE1 /* Assets.xcassets */; };
 		1ADB1BCE2C8C4E1A00DA3CE1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ADB1BCD2C8C4E1A00DA3CE1 /* Preview Assets.xcassets */; };
@@ -69,6 +72,9 @@
 /* Begin PBXFileReference section */
 		1ACB661B2C8D9E0200B9D982 /* WebContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebContent.swift; sourceTree = "<group>"; };
 		1ACB661D2C8D9E0C00B9D982 /* WebContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebContentView.swift; sourceTree = "<group>"; };
+		1ACB661F2C8D9F2800B9D982 /* GithubTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubTests.swift; sourceTree = "<group>"; };
+		1ACB66212C8DA37D00B9D982 /* Support.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Support.swift; sourceTree = "<group>"; };
+		1ACB66232C8DA3F600B9D982 /* SupportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportTests.swift; sourceTree = "<group>"; };
 		1ADB1BC22C8C4E1900DA3CE1 /* Github Playgrounds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Github Playgrounds.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ADB1BC52C8C4E1900DA3CE1 /* Github_PlaygroundsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Github_PlaygroundsApp.swift; sourceTree = "<group>"; };
 		1ADB1BC92C8C4E1A00DA3CE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -198,6 +204,8 @@
 				1ADB1C012C8C4EFE00DA3CE1 /* UsersAPITests.swift */,
 				1ADB1C5B2C8C94FD00DA3CE1 /* UserDetailsAPITests.swift */,
 				1ADB1C032C8C501C00DA3CE1 /* GithubAPITests.swift */,
+				1ACB661F2C8D9F2800B9D982 /* GithubTests.swift */,
+				1ACB66232C8DA3F600B9D982 /* SupportTests.swift */,
 			);
 			path = "Github PlaygroundsTests";
 			sourceTree = "<group>";
@@ -318,6 +326,7 @@
 				1ADB1C1A2C8C514A00DA3CE1 /* GithubAPIError.swift */,
 				1ADB1C1B2C8C514A00DA3CE1 /* GithubAPI.swift */,
 				1ADB1C1C2C8C514A00DA3CE1 /* GithubFetcher.swift */,
+				1ACB66212C8DA37D00B9D982 /* Support.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -491,6 +500,7 @@
 				1ADB1C622C8CA0D000DA3CE1 /* UserReposAPI.swift in Sources */,
 				1ADB1C272C8C547C00DA3CE1 /* User.swift in Sources */,
 				1ADB1C322C8C5E8C00DA3CE1 /* PageLoaderView.swift in Sources */,
+				1ACB66222C8DA37D00B9D982 /* Support.swift in Sources */,
 				1ADB1C602C8C9FA200DA3CE1 /* Repository.swift in Sources */,
 				1ADB1C372C8C60A000DA3CE1 /* UserListView.swift in Sources */,
 				1ADB1C352C8C608F00DA3CE1 /* UserList.swift in Sources */,
@@ -505,10 +515,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ACB66202C8D9F2800B9D982 /* GithubTests.swift in Sources */,
 				1ADB1C022C8C4EFE00DA3CE1 /* UsersAPITests.swift in Sources */,
 				1ADB1C042C8C501C00DA3CE1 /* GithubAPITests.swift in Sources */,
 				1ADB1C722C8CCCAF00DA3CE1 /* UserReposAPITests.swift in Sources */,
 				1ADB1C5C2C8C94FD00DA3CE1 /* UserDetailsAPITests.swift in Sources */,
+				1ACB66242C8DA3F600B9D982 /* SupportTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

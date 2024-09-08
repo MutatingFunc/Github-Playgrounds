@@ -78,7 +78,10 @@ struct GithubLive: Github {
                     hasDownloads: repo.has_downloads,
                     hasDiscussions: repo.has_discussions,
                     archived: repo.archived,
-                    disabled: repo.disabled
+                    disabled: repo.disabled,
+                    pushed: Support.date(from: repo.pushed_at),
+                    created: Support.date(from: repo.created_at),
+                    updated: Support.date(from: repo.updated_at)
                 )
             }
     }
