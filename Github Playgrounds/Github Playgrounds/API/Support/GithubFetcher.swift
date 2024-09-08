@@ -33,6 +33,7 @@ struct GithubFetcherLive: GithubFetcher {
 struct GithubFetcherPreview: GithubFetcher {
     var delay: Int = 1
     var error: Error?
+    
     func fetch<API: GithubAPI>(from api: API) async throws -> API.Response {
         try await Task.sleep(for: .seconds(delay))
         if let error {

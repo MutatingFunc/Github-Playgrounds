@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		1A8AABA42C8DC08C00980938 /* XCUIElementExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8AABA32C8DC08C00980938 /* XCUIElementExtensions.swift */; };
 		1A8AABA72C8DC35500980938 /* PageLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8AABA52C8DC35100980938 /* PageLoaderTests.swift */; };
+		1ABDF6322C8DC6A40050434F /* UserListSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABDF6312C8DC6A40050434F /* UserListSnapshotTests.swift */; };
+		1ABDF6342C8DC7880050434F /* SnapshotHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABDF6332C8DC7880050434F /* SnapshotHelpers.swift */; };
+		1ABDF63A2C8DCA520050434F /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 1ABDF6392C8DCA520050434F /* ComposableArchitecture */; };
+		1ABDF63C2C8DCA800050434F /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 1ABDF63B2C8DCA800050434F /* SnapshotTesting */; };
+		1ABDF63E2C8DD2590050434F /* UserDetailsSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABDF63D2C8DD2590050434F /* UserDetailsSnapshotTests.swift */; };
 		1ACB661C2C8D9E0200B9D982 /* WebContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACB661B2C8D9E0200B9D982 /* WebContent.swift */; };
 		1ACB661E2C8D9E0C00B9D982 /* WebContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACB661D2C8D9E0C00B9D982 /* WebContentView.swift */; };
 		1ACB66202C8D9F2800B9D982 /* GithubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACB661F2C8D9F2800B9D982 /* GithubTests.swift */; };
@@ -31,7 +36,6 @@
 		1ADB1C212C8C514A00DA3CE1 /* GithubFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB1C1C2C8C514A00DA3CE1 /* GithubFetcher.swift */; };
 		1ADB1C222C8C514A00DA3CE1 /* UsersAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB1C1D2C8C514A00DA3CE1 /* UsersAPI.swift */; };
 		1ADB1C272C8C547C00DA3CE1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB1C262C8C547C00DA3CE1 /* User.swift */; };
-		1ADB1C2A2C8C581900DA3CE1 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 1ADB1C292C8C581900DA3CE1 /* ComposableArchitecture */; };
 		1ADB1C2E2C8C5B7500DA3CE1 /* PageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB1C2D2C8C5B7500DA3CE1 /* PageLoader.swift */; };
 		1ADB1C322C8C5E8C00DA3CE1 /* PageLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB1C312C8C5E8C00DA3CE1 /* PageLoaderView.swift */; };
 		1ADB1C352C8C608F00DA3CE1 /* UserList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB1C342C8C608F00DA3CE1 /* UserList.swift */; };
@@ -78,6 +82,10 @@
 /* Begin PBXFileReference section */
 		1A8AABA32C8DC08C00980938 /* XCUIElementExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCUIElementExtensions.swift; sourceTree = "<group>"; };
 		1A8AABA52C8DC35100980938 /* PageLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageLoaderTests.swift; sourceTree = "<group>"; };
+		1ABDF6312C8DC6A40050434F /* UserListSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListSnapshotTests.swift; sourceTree = "<group>"; };
+		1ABDF6332C8DC7880050434F /* SnapshotHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelpers.swift; sourceTree = "<group>"; };
+		1ABDF6382C8DCA4E0050434F /* Github-Playgrounds-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Github-Playgrounds-Info.plist"; sourceTree = SOURCE_ROOT; };
+		1ABDF63D2C8DD2590050434F /* UserDetailsSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsSnapshotTests.swift; sourceTree = "<group>"; };
 		1ACB661B2C8D9E0200B9D982 /* WebContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebContent.swift; sourceTree = "<group>"; };
 		1ACB661D2C8D9E0C00B9D982 /* WebContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebContentView.swift; sourceTree = "<group>"; };
 		1ACB661F2C8D9F2800B9D982 /* GithubTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubTests.swift; sourceTree = "<group>"; };
@@ -135,7 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1ADB1C2A2C8C581900DA3CE1 /* ComposableArchitecture in Frameworks */,
+				1ABDF63A2C8DCA520050434F /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,6 +151,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ABDF63C2C8DCA800050434F /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,7 +168,9 @@
 		1A8AABA82C8DC39200980938 /* TCA */ = {
 			isa = PBXGroup;
 			children = (
+				1ABDF63D2C8DD2590050434F /* UserDetailsSnapshotTests.swift */,
 				1A8AABA52C8DC35100980938 /* PageLoaderTests.swift */,
+				1ABDF6312C8DC6A40050434F /* UserListSnapshotTests.swift */,
 			);
 			path = TCA;
 			sourceTree = "<group>";
@@ -192,6 +203,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		1ABDF6352C8DCA140050434F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1ACB661A2C8D9DF400B9D982 /* WebContent */ = {
 			isa = PBXGroup;
 			children = (
@@ -208,6 +226,7 @@
 				1ADB1BD62C8C4E1A00DA3CE1 /* Github PlaygroundsTests */,
 				1ADB1BE02C8C4E1A00DA3CE1 /* Github PlaygroundsUITests */,
 				1ADB1BC32C8C4E1900DA3CE1 /* Products */,
+				1ABDF6352C8DCA140050434F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -224,6 +243,7 @@
 		1ADB1BC42C8C4E1900DA3CE1 /* Github Playgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				1ABDF6382C8DCA4E0050434F /* Github-Playgrounds-Info.plist */,
 				1ADB1C052C8C50A900DA3CE1 /* Resources */,
 				1ADB1C1E2C8C514A00DA3CE1 /* API */,
 				1ADB1C252C8C547500DA3CE1 /* Models */,
@@ -251,6 +271,7 @@
 				1A8AABA92C8DC39700980938 /* API */,
 				1A8AABAB2C8DC3BA00980938 /* Model */,
 				1A8AABA82C8DC39200980938 /* TCA */,
+				1ABDF6332C8DC7880050434F /* SnapshotHelpers.swift */,
 			);
 			path = "Github PlaygroundsTests";
 			sourceTree = "<group>";
@@ -407,7 +428,7 @@
 			);
 			name = "Github Playgrounds";
 			packageProductDependencies = (
-				1ADB1C292C8C581900DA3CE1 /* ComposableArchitecture */,
+				1ABDF6392C8DCA520050434F /* ComposableArchitecture */,
 			);
 			productName = "Github Playgrounds";
 			productReference = 1ADB1BC22C8C4E1900DA3CE1 /* Github Playgrounds.app */;
@@ -427,6 +448,9 @@
 				1ADB1BD52C8C4E1A00DA3CE1 /* PBXTargetDependency */,
 			);
 			name = "Github PlaygroundsTests";
+			packageProductDependencies = (
+				1ABDF63B2C8DCA800050434F /* SnapshotTesting */,
+			);
 			productName = "Github PlaygroundsTests";
 			productReference = 1ADB1BD32C8C4E1A00DA3CE1 /* Github PlaygroundsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -445,6 +469,8 @@
 				1ADB1BDF2C8C4E1A00DA3CE1 /* PBXTargetDependency */,
 			);
 			name = "Github PlaygroundsUITests";
+			packageProductDependencies = (
+			);
 			productName = "Github PlaygroundsUITests";
 			productReference = 1ADB1BDD2C8C4E1A00DA3CE1 /* Github PlaygroundsUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -483,6 +509,7 @@
 			mainGroup = 1ADB1BB92C8C4E1900DA3CE1;
 			packageReferences = (
 				1ADB1C282C8C581900DA3CE1 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				1ABDF62E2C8DC6860050434F /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 			);
 			productRefGroup = 1ADB1BC32C8C4E1900DA3CE1 /* Products */;
 			projectDirPath = "";
@@ -565,13 +592,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ABDF6322C8DC6A40050434F /* UserListSnapshotTests.swift in Sources */,
 				1ACB66202C8D9F2800B9D982 /* GithubTests.swift in Sources */,
 				1ADB1C022C8C4EFE00DA3CE1 /* UsersAPITests.swift in Sources */,
 				1ADB1C042C8C501C00DA3CE1 /* GithubAPITests.swift in Sources */,
 				1ADB1C722C8CCCAF00DA3CE1 /* UserReposAPITests.swift in Sources */,
 				1ADB1C5C2C8C94FD00DA3CE1 /* UserDetailsAPITests.swift in Sources */,
+				1ABDF63E2C8DD2590050434F /* UserDetailsSnapshotTests.swift in Sources */,
 				1ACB66242C8DA3F600B9D982 /* SupportTests.swift in Sources */,
 				1A8AABA72C8DC35500980938 /* PageLoaderTests.swift in Sources */,
+				1ABDF6342C8DC7880050434F /* SnapshotHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -732,6 +762,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Github-Playgrounds-Info.plist";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -770,6 +801,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Github-Playgrounds-Info.plist";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -927,6 +959,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		1ABDF62E2C8DC6860050434F /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.17.4;
+			};
+		};
 		1ADB1C282C8C581900DA3CE1 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
@@ -938,10 +978,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1ADB1C292C8C581900DA3CE1 /* ComposableArchitecture */ = {
+		1ABDF6392C8DCA520050434F /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1ADB1C282C8C581900DA3CE1 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
+		};
+		1ABDF63B2C8DCA800050434F /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1ABDF62E2C8DC6860050434F /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -35,23 +35,30 @@ struct UserDetailsView: View {
                 .padding()
                 .background(.bar, ignoresSafeAreaEdges: .all)
                 Divider().edgesIgnoringSafeArea(.all)
-                List {
-                    Section {
-                        ForEach(store.scope(state: \.rows, action: \.repoRow)) { store in
-                            RepoRowView(store: store)
-                        }
-                        if store.isLoadingRepos {
-                            ProgressView("Loading…")
-                                .frame(maxWidth: .infinity)
-                        }
-                    } header: {
-                        if let error = store.reposLoadError {
-                            ErrorView(description: "Error loading repositories", error: error)
-                                .padding()
-                                .frame(maxWidth: .infinity)
-                                .background(Color(uiColor: .systemGroupedBackground))
-                        }
-                    }.headerProminence(.standard)
+                if store.rows.isEmpty && store.reposLoadError == nil {
+                    ProgressView("Loading…")
+                        .padding()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                        .background(Color(uiColor: .systemGroupedBackground))
+                } else {
+                    List {
+                        Section {
+                            ForEach(store.scope(state: \.rows, action: \.repoRow)) { store in
+                                RepoRowView(store: store)
+                            }
+                            if store.isLoadingRepos {
+                                ProgressView("Loading…")
+                                    .frame(maxWidth: .infinity)
+                            }
+                        } footer: {
+                            if let error = store.reposLoadError {
+                                ErrorView(description: "Error loading repositories", error: error)
+                                    .padding()
+                                    .frame(maxWidth: .infinity)
+                                    .background(Color(uiColor: .systemGroupedBackground))
+                            }
+                        }.headerProminence(.standard)
+                    }
                 }
             }
             .navigationTitle(store.user.username)

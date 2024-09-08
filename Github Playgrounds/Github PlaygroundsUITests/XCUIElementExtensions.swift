@@ -2,11 +2,6 @@ import XCTest
 
 extension XCUIElement {
     
-    // A workaround for tapping the XCUIElement not working.
-    func positionalTap() {
-        self.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
-    }
-    
     /// A wait function which accepts waiting for any key path to be true, and includes a default timeout of 0.2s.
     func wait(for property: KeyPath<XCUIElement, Bool>, timeout: TimeInterval = 0.2) -> Bool {
         wait(for: { $0[keyPath: property] }, timeout: timeout)

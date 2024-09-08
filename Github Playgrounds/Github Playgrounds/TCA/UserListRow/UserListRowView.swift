@@ -15,7 +15,7 @@ struct UserListRowView: View {
             }
         }.task(id: store.user.id) {
             store.send(.loadAvatar)
-        }
+        }.buttonStyle(.plain)
     }
 }
 

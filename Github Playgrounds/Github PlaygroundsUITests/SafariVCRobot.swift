@@ -17,7 +17,7 @@ struct SafariVCRobot<Parent: Robot>: PushedRobot {
     func goBack() -> Parent {
         // For some reason a regular tap on the XCUIElement is not working on iPhone, only iPad.
         // Tapping with a finger works in both cases.
-        closeButton.positionalTap()
+        closeButton.coordinate(withNormalizedOffset: CGVector(dx: 0.8, dy: 0.8)).tap()
         return .init()
     }
 }

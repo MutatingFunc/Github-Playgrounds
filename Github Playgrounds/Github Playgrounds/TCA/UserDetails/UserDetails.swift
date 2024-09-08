@@ -10,7 +10,7 @@ struct UserDetails {
         var rows: IdentifiedArrayOf<RepoRow.State> = []
         var reposLoadError: Error? = nil
         var detailsLoadError: Error? = nil
-        var loadedAvatar: Result<Image, Error>?
+        var loadedAvatar: Result<Image, Error>? = nil
         
         var id: User.ID { user.id }
     }

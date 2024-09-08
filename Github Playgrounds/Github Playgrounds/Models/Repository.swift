@@ -27,7 +27,7 @@ extension User {
         
         static func preview() -> Self {
             Self(
-                id: 1296269,
+                id: UUID().hashValue,
                 name: "Hello-World",
                 path: "octocat/Hello-World",
                 url: URL(string: "https://github.com/octocat/Hello-World")!,
