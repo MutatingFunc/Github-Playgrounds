@@ -1,5 +1,6 @@
 import SwiftUI
 import ComposableArchitecture
+import Tooltips
 
 @main
 struct Github_PlaygroundsApp: App {
@@ -9,7 +10,7 @@ struct Github_PlaygroundsApp: App {
                 store: .init(initialState: .init()) {
                     Window()
                 }
-            )
+            ).tooltipHost()
         }
     }
 }

@@ -1,4 +1,5 @@
 import SwiftUI
+import Tooltips
 
 extension View {
     func repoStats(stars: Int, watchers: Int, forks: Int) -> some View {
@@ -21,16 +22,19 @@ private struct RepoStatsModifier: ViewModifier {
                     Label("Stars", systemImage: "star.fill")
                 }
                 .foregroundStyle(.yellow)
+                .tooltip("Stars")
                 HStack {
                     Text("\(watchers)")
                     Label("Watchers", systemImage: "eyes")
                 }
                 .foregroundStyle(.blue)
+                .tooltip("Watchers")
                 HStack {
                     Text("\(forks)")
                     Label("Forks", systemImage: "tuningfork")
                 }
                 .foregroundStyle(.green)
+                .tooltip("Forks")
             }
             .frame(maxWidth: .infinity)
             .labelStyle(.iconOnly)

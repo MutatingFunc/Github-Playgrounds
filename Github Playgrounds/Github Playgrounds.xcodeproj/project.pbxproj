@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A007CB82C8E130300F664C2 /* Tooltips in Frameworks */ = {isa = PBXBuildFile; productRef = 1A007CB72C8E130300F664C2 /* Tooltips */; };
 		1A8AABA42C8DC08C00980938 /* XCUIElementExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8AABA32C8DC08C00980938 /* XCUIElementExtensions.swift */; };
 		1A8AABA72C8DC35500980938 /* UserListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8AABA52C8DC35100980938 /* UserListTests.swift */; };
 		1ABDF6322C8DC6A40050434F /* UserListSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABDF6312C8DC6A40050434F /* UserListSnapshotTests.swift */; };
@@ -139,6 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A007CB82C8E130300F664C2 /* Tooltips in Frameworks */,
 				1ABDF63A2C8DCA520050434F /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -415,6 +417,7 @@
 			name = "Github Playgrounds";
 			packageProductDependencies = (
 				1ABDF6392C8DCA520050434F /* ComposableArchitecture */,
+				1A007CB72C8E130300F664C2 /* Tooltips */,
 			);
 			productName = "Github Playgrounds";
 			productReference = 1ADB1BC22C8C4E1900DA3CE1 /* Github Playgrounds.app */;
@@ -496,6 +499,7 @@
 			packageReferences = (
 				1ADB1C282C8C581900DA3CE1 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				1ABDF62E2C8DC6860050434F /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
+				1A007CB62C8E130300F664C2 /* XCRemoteSwiftPackageReference "Tooltips" */,
 			);
 			productRefGroup = 1ADB1BC32C8C4E1900DA3CE1 /* Products */;
 			projectDirPath = "";
@@ -943,6 +947,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		1A007CB62C8E130300F664C2 /* XCRemoteSwiftPackageReference "Tooltips" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MutatingFunc/Tooltips.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		1ABDF62E2C8DC6860050434F /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing.git";
@@ -962,6 +974,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1A007CB72C8E130300F664C2 /* Tooltips */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1A007CB62C8E130300F664C2 /* XCRemoteSwiftPackageReference "Tooltips" */;
+			productName = Tooltips;
+		};
 		1ABDF6392C8DCA520050434F /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1ADB1C282C8C581900DA3CE1 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;

@@ -1,5 +1,6 @@
 import SwiftUI
 import ComposableArchitecture
+import Tooltips
 
 struct RepoRowView: View {
     var store: StoreOf<RepoRow>
@@ -64,5 +65,5 @@ struct RepoRowView: View {
     }
     return List {
         RepoRowView(store: store)
-    }
+    }.tooltipHost()
 }

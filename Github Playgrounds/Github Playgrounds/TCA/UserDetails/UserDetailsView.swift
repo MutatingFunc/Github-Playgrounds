@@ -1,5 +1,6 @@
 import SwiftUI
 import ComposableArchitecture
+import Tooltips
 
 struct UserDetailsView: View {
     @Bindable var store: StoreOf<UserDetails>
@@ -93,5 +94,5 @@ struct UserDetailsView: View {
     }
     return NavigationStack {
         UserDetailsView(store: store)
-    }
+    }.tooltipHost()
 }

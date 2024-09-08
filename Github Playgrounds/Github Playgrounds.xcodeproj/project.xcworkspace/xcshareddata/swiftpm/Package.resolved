@@ -1,5 +1,5 @@
 {
-  "originHash" : "56fd88725c3ab49a9a817ac8870c03609883c4883dbb6a0908d720581060c0f6",
+  "originHash" : "1328db1033ec98e808bdb509cb9e60b37de6a70e3e4743779a8c9b477baec323",
   "pins" : [
     {
       "identity" : "combine-schedulers",
@@ -116,6 +116,15 @@
       "state" : {
         "revision" : "515f79b522918f83483068d99c68daeb5116342d",
         "version" : "600.0.0-prerelease-2024-09-04"
+      }
+    },
+    {
+      "identity" : "tooltips",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/MutatingFunc/Tooltips.git",
+      "state" : {
+        "revision" : "ed067ec27c1031b5be47ca69c15df43034cbb004",
+        "version" : "1.0.0"
       }
     },
     {
