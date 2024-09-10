@@ -4,7 +4,7 @@ Test project for the Github API
 ## Setup
 
 Add your personal access token:
-`Github Playgrounds/GithubAPI/Sources/GithubAPI/Resources/Access Token.txt`
+`Github Playgrounds/Packages/Sources/GithubAPI/Resources/Access Token.txt`
 
 ## Considerations
 
