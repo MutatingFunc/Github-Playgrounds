@@ -57,7 +57,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "リソースディレクトリにアクセス トークンを追加する必要があります。"
+            "value" : "Resourcesディレクトリにアクセス トークンを追加する必要があります。"
           }
         }
       }
